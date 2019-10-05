@@ -5,41 +5,43 @@ extends Node2D
 # var b = "text"
 var CollComponent = preload("res://CollComponent.tscn")
 var CollResource = preload("res://CollResource.tscn")
+var rng = RandomNumberGenerator.new()
 
-func generate_collectible_component():
-	pass
+var levelOneComponents = [
+	"wing",
+	"hull",
+	"engine-a-l",
+	"engine-a-r",
+	"engine-b-l",
+	"engine-b-r",
+]
+
+func generate_collectible_component(set):
+	var compType = set[rng.randi_range(0, set.size()-1)]
+	var component = CollComponent.instance()
+	var initialPos = Vector2(rng.randi_range(0, 500), rng.randi_range(0, 500))
+	component.init(compType, initialPos)
+	self.add_child(component)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	rng.randomize()
 	var testComp = CollComponent.instance()
 	testComp.init("hull", Vector2(500, 300))
 
 	var testComp2 = CollComponent.instance()
 	testComp2.init("wing", Vector2(300, 500))
 	
-	# var testComp3 = CollComponent.instance()
-	# testComp3.init("engine-a-l", Vector2(200, 500))
-
-	# var testComp4 = CollComponent.instance()
-	# testComp4.init("engine-a-r", Vector2(250, 500))
-
-	# var testComp5 = CollComponent.instance()
-	# testComp5.init("engine-b-l", Vector2(200, 600))
-
-	# var testComp6 = CollComponent.instance()
-	# testComp6.init("engine-b-r", Vector2(250, 600))
-
 	self.add_child(testComp)
 	self.add_child(testComp2)
+
+	generate_collectible_component(levelOneComponents);
+	generate_collectible_component(levelOneComponents);
 	
 	var testResc = CollResource.instance()
 	testResc.init("fuel", Vector2(100, 100))
 	self.add_child(testResc)
 	self.add_child(testComp2)
-	# self.add_child(testComp3)
-	# self.add_child(testComp4)
-	# self.add_child(testComp5)
-	# self.add_child(testComp6)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
