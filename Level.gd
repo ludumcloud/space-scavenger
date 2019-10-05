@@ -9,7 +9,12 @@ var CollComponent = preload("res://CollComponent.tscn")
 func _ready():
 	var testComp = CollComponent.instance()
 	testComp.init("hull", Vector2(500, 300))
+
+	var testComp2 = CollComponent.instance()
+	testComp2.init("wing", Vector2(300, 500))
+
 	self.add_child(testComp)
+	self.add_child(testComp2)
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -20,4 +25,4 @@ func _process(delta):
 		$Ship.rotate(PI * delta);
 	if Input.is_action_pressed("ui_up"):
 		$Ship.translate(Vector2(cos($Ship.rotation), sin($Ship.rotation)) * 30.0 * delta);
-		
+

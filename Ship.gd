@@ -67,15 +67,33 @@ func can_attach(compType: String):
 				# side, if not, continue down the hull
 				if (currentComp.leftComp.added == false || currentComp.rightComp.added == false):
 					return true
-				elif (currentComp.nextCenterComp != null):
-					currentComp = currentComp.nextCenterComp
 				else:
-					return false
+					currentComp = currentComp.nextCenterComp
 			else:
 				return false
 
-func do_attach():
-	pass
+# pretty much the same as above, but with actions
+func do_attach(compType: String):
+	var currentComp = ship.nextCenterComp
+
+	if (compType == 'hull'):
+		while (currentComp != null):
+			if (currentComp.added):
+				currentComp = currentComp.nextCenterComp
+			else:
+				currentComp.add()
+	else:
+		while (currentComp != null):
+			if (currentComp.added):
+				if (currentComp.leftComp.added == false):
+					currentComp.leftComp.add()
+				elif (currentComp.rightComp.added == false):
+					currentComp.rightComp.add()
+				else:
+					currentComp = currentComp.nextCenterComp
+			else:
+				return
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
