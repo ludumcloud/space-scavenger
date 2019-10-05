@@ -17,17 +17,17 @@ func _ready():
 	var testComp2 = CollComponent.instance()
 	testComp2.init("wing", Vector2(300, 500))
 	
-	var testComp3 = CollComponent.instance()
-	testComp3.init("engine-a-l", Vector2(200, 500))
+	# var testComp3 = CollComponent.instance()
+	# testComp3.init("engine-a-l", Vector2(200, 500))
 
-	var testComp4 = CollComponent.instance()
-	testComp4.init("engine-a-r", Vector2(250, 500))
+	# var testComp4 = CollComponent.instance()
+	# testComp4.init("engine-a-r", Vector2(250, 500))
 
-	var testComp5 = CollComponent.instance()
-	testComp5.init("engine-b-l", Vector2(200, 600))
+	# var testComp5 = CollComponent.instance()
+	# testComp5.init("engine-b-l", Vector2(200, 600))
 
-	var testComp6 = CollComponent.instance()
-	testComp6.init("engine-b-r", Vector2(250, 600))
+	# var testComp6 = CollComponent.instance()
+	# testComp6.init("engine-b-r", Vector2(250, 600))
 
 	self.add_child(testComp)
 	self.add_child(testComp2)
@@ -35,10 +35,11 @@ func _ready():
 	var testResc = CollResource.instance()
 	testResc.init("fuel", Vector2(100, 100))
 	self.add_child(testResc)
-	self.add_child(testComp3)
-	self.add_child(testComp4)
-	self.add_child(testComp5)
-	self.add_child(testComp6)
+	self.add_child(testComp2)
+	# self.add_child(testComp3)
+	# self.add_child(testComp4)
+	# self.add_child(testComp5)
+	# self.add_child(testComp6)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
