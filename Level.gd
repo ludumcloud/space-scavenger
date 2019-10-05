@@ -4,6 +4,7 @@ extends Node2D
 # var a = 2
 # var b = "text"
 var CollComponent = preload("res://CollComponent.tscn")
+var CollResource = preload("res://CollResource.tscn")
 
 func generate_collectible_component():
 	pass
@@ -30,6 +31,10 @@ func _ready():
 
 	self.add_child(testComp)
 	self.add_child(testComp2)
+	
+	var testResc = CollResource.instance()
+	testResc.init("fuel", Vector2(100, 100))
+	self.add_child(testResc)
 	self.add_child(testComp3)
 	self.add_child(testComp4)
 	self.add_child(testComp5)
