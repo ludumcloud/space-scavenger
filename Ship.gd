@@ -19,6 +19,8 @@ class Component:
 
 var ship: Component
 var scaffold1: Component
+var wingL: Component
+var wingR: Component
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,6 +29,12 @@ func _ready():
 
 	ship.add()
 	ship.subComps.append(scaffold1)
+	
+	wingL = Component.new($WingL)
+	scaffold1.subComps.append(wingL)
+	
+	wingR = Component.new($WingR)
+	scaffold1.subComps.append(wingR)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
