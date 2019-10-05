@@ -27,7 +27,7 @@ position = Vector2( -1.36041, 248.551 )
 position = Vector2( -1.36041, 353.299 )
 
 [node name="Scaffold4" parent="." instance=ExtResource( 3 )]
-position = Vector2( -6.10352e-05, 463.49 )
+position = Vector2( -6.10352e-005, 463.49 )
 
 [node name="Scaffold5" parent="." instance=ExtResource( 3 )]
 position = Vector2( -1.36041, 569.599 )

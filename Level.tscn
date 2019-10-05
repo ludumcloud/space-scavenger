@@ -29,8 +29,10 @@ motion_mirroring = Vector2( 1, 1 )
 position = Vector2( 640, 328.5 )
 texture = ExtResource( 3 )
 
-[node name="GUI" parent="." instance=ExtResource( 4 )]
-margin_left = -253.366
-margin_top = -156.897
-margin_right = 58.6339
-margin_bottom = 32.1027
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GUI" parent="CanvasLayer" instance=ExtResource( 4 )]
+margin_left = 4.00928
+margin_top = 4.8373
+margin_right = 316.009
+margin_bottom = 193.837
