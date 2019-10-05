@@ -11,9 +11,9 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_pressed("ui_left"):
-		$Ship.rotate(-0.1);
+		$Ship.rotate(-PI * delta);
 	if Input.is_action_pressed("ui_right"):
-		$Ship.rotate(0.1);
+		$Ship.rotate(PI * delta);
 	if Input.is_action_pressed("ui_up"):
-		$Ship.translate(Vector2(cos($Ship.rotation), sin($Ship.rotation)) * 1.1);
+		$Ship.translate(Vector2(cos($Ship.rotation), sin($Ship.rotation)) * 30.0 * delta);
 		
