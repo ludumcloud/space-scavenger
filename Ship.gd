@@ -26,23 +26,37 @@ class HullComponent extends Component:
 		pass
 
 var ship: Component
-var scaffold1: Component
+var hull1: Component
+var hull2: Component
+var hull3: Component
+var hull4: Component
+var hull5: Component
 var wingL: Component
 var wingR: Component
+
+var angularVelocity = 1.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	ship = HullComponent.new($Cockpit)
-	scaffold1 = HullComponent.new($Scaffold1)
+	hull1 = HullComponent.new($Scaffold1)
+	hull2 = HullComponent.new($Scaffold2)
+	hull3 = HullComponent.new($Scaffold3)
+	hull4 = HullComponent.new($Scaffold4)
+	hull5 = HullComponent.new($Scaffold5)
 
 	ship.add()
-	ship.nextCenterComp = scaffold1
+	ship.nextCenterComp = hull1
+	hull1.nextCenterComp = hull2
+	hull2.nextCenterComp = hull3
+	hull3.nextCenterComp = hull4
+	hull4.nextCenterComp = hull5
 
 	wingL = Component.new($WingL)
-	scaffold1.leftComp = wingL
+	hull1.leftComp = wingL
 
 	wingR = Component.new($WingR)
-	scaffold1.rightComp = wingL
+	hull1.rightComp = wingL
 
 
 func can_attach(compType: String):
@@ -72,6 +86,14 @@ func can_attach(compType: String):
 			else:
 				return false
 
+
+func _add_leaf_component(component: Component, compType: String):
+	component.add()
+	match compType:
+		'wing':
+			print('added wing')
+			angularVelocity += 0.2
+
 # pretty much the same as above, but with actions
 func do_attach(compType: String):
 	var currentComp = ship.nextCenterComp
@@ -82,13 +104,14 @@ func do_attach(compType: String):
 				currentComp = currentComp.nextCenterComp
 			else:
 				currentComp.add()
+				return
 	else:
 		while (currentComp != null):
 			if (currentComp.added):
-				if (currentComp.leftComp.added == false):
-					currentComp.leftComp.add()
-				elif (currentComp.rightComp.added == false):
-					currentComp.rightComp.add()
+				if (currentComp.leftComp != null && currentComp.leftComp.added == false):
+					_add_leaf_component(currentComp.leftComp, compType)
+				elif (currentComp.leftComp != null && currentComp.rightComp.added == false):
+					_add_leaf_component(currentComp.rightComp, compType)
 				else:
 					currentComp = currentComp.nextCenterComp
 			else:
