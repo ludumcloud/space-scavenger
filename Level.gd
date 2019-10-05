@@ -3,9 +3,13 @@ extends Node2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
+var CollComponent = preload("res://CollComponent.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var testComp = CollComponent.instance()
+	testComp.init("wing", Vector2(500, 300))
+	self.add_child(testComp)
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
