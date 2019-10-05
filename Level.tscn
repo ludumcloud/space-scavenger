@@ -22,6 +22,7 @@ drag_margin_bottom = 0.05
 scroll_base_scale = Vector2( 0.5, 0.5 )
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 1, 1 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
 position = Vector2( 640, 328.5 )
