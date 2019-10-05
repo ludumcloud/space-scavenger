@@ -67,8 +67,10 @@ func can_attach(compType: String):
 				# side, if not, continue down the hull
 				if (currentComp.leftComp.added == false || currentComp.rightComp.added == false):
 					return true
-				elif (currentComp.nextCenterComp):
+				elif (currentComp.nextCenterComp != null):
 					currentComp = currentComp.nextCenterComp
+				else:
+					return false
 			else:
 				return false
 
