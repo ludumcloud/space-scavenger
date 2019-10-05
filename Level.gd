@@ -47,5 +47,5 @@ func _process(delta):
 	if Input.is_action_pressed("ui_right"):
 		$Ship.rotate(PI * delta * $Ship.angularVelocity);
 	if Input.is_action_pressed("ui_up"):
-		$Ship.translate(Vector2(cos($Ship.rotation), sin($Ship.rotation)) * 30.0 * delta);
+		$Ship.translate(Vector2(sin($Ship.rotation), -cos($Ship.rotation)) * 30.0 * delta);
 
