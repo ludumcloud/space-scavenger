@@ -8,7 +8,7 @@ var CollComponent = preload("res://CollComponent.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var testComp = CollComponent.instance()
-	testComp.init("wing", Vector2(500, 300))
+	testComp.init("hull", Vector2(500, 300))
 	self.add_child(testComp)
 	pass # Replace with function body.
 
