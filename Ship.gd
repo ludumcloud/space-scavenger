@@ -1,15 +1,15 @@
 extends Node2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 class Component:
 	var added: bool
 	var node: Node2D
+	var type: String
+	var children = []
 
-	func _init(compNode: Node2D):
+	func _init(compNode: Node2D, tp: String):
 		added = false
 		node = compNode
+		type = tp
 		compNode.hide()
 
 	func add():
@@ -22,7 +22,7 @@ class HullComponent extends Component:
 	var leftComp: Component
 	var rightComp: Component
 
-	func _init(compNode: Node2D).(compNode):
+	func _init(compNode: Node2D).(compNode, "hull"):
 		pass
 
 var ship: Component
@@ -33,6 +33,8 @@ var hull4: Component
 var hull5: Component
 var wingL: Component
 var wingR: Component
+var wingBL: Component
+var wingBR: Component
 
 var angularVelocity = 1.0
 var fuel = 20
@@ -53,11 +55,15 @@ func _ready():
 	hull3.nextCenterComp = hull4
 	hull4.nextCenterComp = hull5
 
-	wingL = Component.new($WingL)
+	wingL = Component.new($WingL, "wing")
 	hull1.leftComp = wingL
 
-	wingR = Component.new($WingR)
+	wingR = Component.new($WingR, "wing")
 	hull1.rightComp = wingL
+
+	wingBL = Component.new($WingBL, "wing")
+
+	wingBR = Component.new($WingBR, "wing")
 
 
 func can_attach(compType: String):
