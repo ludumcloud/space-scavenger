@@ -4,6 +4,7 @@ extends Node2D
 # var a = 2
 # var b = "text"
 var CollComponent = preload("res://CollComponent.tscn")
+var CollResource = preload("res://CollResource.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,6 +16,10 @@ func _ready():
 
 	self.add_child(testComp)
 	self.add_child(testComp2)
+	
+	var testResc = CollResource.instance()
+	testResc.init("fuel", Vector2(100, 100))
+	self.add_child(testResc)
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
