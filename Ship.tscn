@@ -1,13 +1,19 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Ship.gd" type="Script" id=1]
 [ext_resource path="res://Cockpit.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scaffold.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Wing.tscn" type="PackedScene" id=4]
 [ext_resource path="res://WingR.tscn" type="PackedScene" id=5]
+[ext_resource path="res://WingBL.tscn" type="PackedScene" id=6]
+[ext_resource path="res://WingBR.tscn" type="PackedScene" id=7]
 
 [node name="Ship" type="Node2D"]
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 146.6 ],
+"_edit_vertical_guides_": [ -104.2, 108.8 ]
+}
 
 [node name="Cockpit" parent="." instance=ExtResource( 2 )]
 
@@ -31,3 +37,9 @@ position = Vector2( -105, 147 )
 
 [node name="WingR" parent="." instance=ExtResource( 5 )]
 position = Vector2( 103, 146 )
+
+[node name="WingBL" parent="." instance=ExtResource( 6 )]
+position = Vector2( -102, 146 )
+
+[node name="WingBR" parent="." instance=ExtResource( 7 )]
+position = Vector2( 108, 148 )
