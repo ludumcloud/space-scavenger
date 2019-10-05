@@ -3,8 +3,8 @@
 [ext_resource path="res://Ship.gd" type="Script" id=1]
 [ext_resource path="res://Cockpit.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scaffold.tscn" type="PackedScene" id=3]
-[ext_resource path="res://WingR.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Wing.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Wing.tscn" type="PackedScene" id=4]
+[ext_resource path="res://WingR.tscn" type="PackedScene" id=5]
 
 [node name="Ship" type="Node2D"]
 script = ExtResource( 1 )
@@ -14,8 +14,8 @@ script = ExtResource( 1 )
 [node name="Scaffold1" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, 137 )
 
-[node name="WingL" parent="." instance=ExtResource( 5 )]
+[node name="WingL" parent="." instance=ExtResource( 4 )]
 position = Vector2( -105, 147 )
 
-[node name="Node2D" parent="." instance=ExtResource( 4 )]
+[node name="WingR" parent="." instance=ExtResource( 5 )]
 position = Vector2( 103, 146 )
