@@ -20,7 +20,7 @@ func init(cType: String, curPos: Vector2):
 			$Sprite.texture = load("res://assets/ssck/Orange (4).png")
 		"engine-b-r":
 			$Sprite.texture = load("res://assets/ssck/Orange (5).png")
-		
+
 
 	self.scale = Vector2(0.5, 0.5)
 
@@ -33,6 +33,7 @@ func _process(delta):
 	var ship = get_parent().get_child(0)
 	if (ship.global_position - self.global_position).length() < 80:
 		if(ship.can_attach(componentType)):
+			get_parent().get_node('CanvasLayer/AttachmentPopup').popup()
 			ship.do_attach(componentType)
 			get_parent().remove_child(self)
 
