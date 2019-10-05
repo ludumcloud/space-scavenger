@@ -35,6 +35,7 @@ var wingL: Component
 var wingR: Component
 
 var angularVelocity = 1.0
+var fuel = 20
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -116,6 +117,11 @@ func do_attach(compType: String):
 					currentComp = currentComp.nextCenterComp
 			else:
 				return
+				
+func add_resource(resourceType: String):
+	match resourceType:
+		"fuel":
+			fuel += 20
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
