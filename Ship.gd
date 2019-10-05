@@ -110,7 +110,7 @@ func do_attach(compType: String):
 			if (currentComp.added):
 				if (currentComp.leftComp != null && currentComp.leftComp.added == false):
 					_add_leaf_component(currentComp.leftComp, compType)
-				elif (currentComp.leftComp != null && currentComp.rightComp.added == false):
+				elif (currentComp.rightComp != null && currentComp.rightComp.added == false):
 					_add_leaf_component(currentComp.rightComp, compType)
 				else:
 					currentComp = currentComp.nextCenterComp
