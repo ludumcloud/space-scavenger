@@ -30,6 +30,8 @@ var scaffold1: Component
 var wingL: Component
 var wingR: Component
 
+var angularVelocity = 1.0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	ship = HullComponent.new($Cockpit)
@@ -72,6 +74,14 @@ func can_attach(compType: String):
 			else:
 				return false
 
+
+func _add_leaf_component(component: Component, compType: String):
+	component.add()
+	match compType:
+		'wing':
+			print('added wing')
+			angularVelocity += 0.2
+
 # pretty much the same as above, but with actions
 func do_attach(compType: String):
 	var currentComp = ship.nextCenterComp
@@ -86,9 +96,9 @@ func do_attach(compType: String):
 		while (currentComp != null):
 			if (currentComp.added):
 				if (currentComp.leftComp.added == false):
-					currentComp.leftComp.add()
+					_add_leaf_component(currentComp.leftComp, compType)
 				elif (currentComp.rightComp.added == false):
-					currentComp.rightComp.add()
+					_add_leaf_component(currentComp.rightComp, compType)
 				else:
 					currentComp = currentComp.nextCenterComp
 			else:
