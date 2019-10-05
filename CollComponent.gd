@@ -1,8 +1,5 @@
 extends Node2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 var componentType: String
 var pos: Vector2
 
@@ -15,6 +12,15 @@ func init(cType: String, curPos: Vector2):
 			$Sprite.texture = load("res://assets/ssck/Orange (14).png")
 		"hull":
 			$Sprite.texture = load("res://assets/ssck/Orange (2).png")
+		"engine-a-l":
+			$Sprite.texture = load("res://assets/ssck/Orange (6).png")
+		"engine-a-r":
+			$Sprite.texture = load("res://assets/ssck/Orange (7).png")
+		"engine-b-l":
+			$Sprite.texture = load("res://assets/ssck/Orange (4).png")
+		"engine-b-r":
+			$Sprite.texture = load("res://assets/ssck/Orange (5).png")
+		
 
 	self.scale = Vector2(0.5, 0.5)
 
