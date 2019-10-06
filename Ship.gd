@@ -41,7 +41,7 @@ func do_attach(compType: String):
 	var joint = ship.search_joints(compType)
 	if joint == null:
 		return
-	
+
 	hullNum += 1
 	match compType:
 		'wing-left':
@@ -63,7 +63,7 @@ func do_attach(compType: String):
 		'hull':
 			print('added hull')
 			joint.attach(Scaffold.instance())
-			
+
 
 func add_resource(resourceType: String):
 	match resourceType:
@@ -73,10 +73,10 @@ func add_resource(resourceType: String):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var speed
-	if fuel < 0.001:
-		speed = 4.0
+	if fuel < 0:
+		maxShipSpeed = 4.0
 	else:
-		speed = 6.0 + engineNum
-	if shipVelocity.length() > 0:
+		maxShipSpeed = 6.0 + (engineNum * 3)
+
+	if shipVelocity.length() > 0 && fuel > 0:
 		fuel -= engineNum  * delta
