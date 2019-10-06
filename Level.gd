@@ -96,7 +96,7 @@ func _process(delta):
 		$Ship.shipVelocity = Vector2(0.0, 0.0)
 
 	$Ship.rotation = $Ship.angle
-	$Ship.translate($Ship.shipVelocity * delta * 50)
+	$Ship.translate($Ship.shipVelocity * delta * 30)
 
 	if (rng.randi_range(0, 300) > 298):
 		if $Ship.shipVelocity.length() > 0:
