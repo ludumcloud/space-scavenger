@@ -33,11 +33,10 @@ func found_component(component):
 	addTimedMessage("found " + component.componentName, Color(0,255,0))
 	
 func found_fuel():
-	addTimedMessage("found fuel", Color(100,100,255))
-	#pass
+	addTimedMessage("found fuel", Color(0,255,255))
 
-func found_mine(mine):
-	addTimedMessage("you blew it", Color(255,100,100))
+func found_mine():
+	addTimedMessage("you blew it", Color(255,0,0))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

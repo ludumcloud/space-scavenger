@@ -41,6 +41,8 @@ func _process(delta):
 	var distance = (ship.global_position - self.global_position).length()
 	if (isActive):
 		if distance < 100:
+			
+			#get_parent().get_child(2).get_child(2).found_mine()
 			ship.reinit()
 			$AnimatedSprite.play("explode")
 
