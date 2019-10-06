@@ -86,7 +86,7 @@ func init(componentKey: String, curPos: Vector2):
 	componentClass = descriptor['klass']
 	$Sprite.texture = load(descriptor['texture'])
 
-	rotation_speed = rand_range(-0.0005, 0.0005)
+	rotation_speed = rand_range(-1, 1)
 
 	direction = Vector2(rand_range(-1, 1), rand_range(-1, 1))
 
@@ -119,5 +119,5 @@ func _process(delta):
 	updateVec = updateVec.normalized() * delta * 25
 	self.translate(updateVec)
 
-	self.rotate(rotation_speed)
+	self.rotate(rotation_speed * delta)
 

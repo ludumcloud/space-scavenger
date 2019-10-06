@@ -9,7 +9,7 @@ func init(position: Vector2, currGameTime):
 	self.global_position = position
 	elapsedTime = currGameTime
 	setActive(isActive)
-	rotation_speed = rand_range(-0.0005, 0.0005)
+	rotation_speed = rand_range(-1, 1)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -38,7 +38,7 @@ func _process(delta):
 		var updateVec = get_parent().get_child(0).position - self.global_position
 		updateVec = updateVec.normalized() * delta * 200
 		self.translate(updateVec)
-		self.rotate(rotation_speed)
+		self.rotate(rotation_speed * delta)
 
 	var ship = get_parent().get_child(0)
 	var distance = (ship.global_position - self.global_position).length()
@@ -46,7 +46,6 @@ func _process(delta):
 		if distance < 100:
 			ship.reinit()
 			$AnimatedSprite.play("explode")
-		self.rotate(rotation_speed * 0.5)
 
 	#distance based cleanup
 	if (distance > 4000):

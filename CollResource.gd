@@ -18,8 +18,8 @@ func init(type: String, curPos: Vector2):
 
 	self.scale = Vector2(0.4, 0.4)
 
-	direction = Vector2(rand_range(-1, 1), rand_range(-1, 1))
-	rotation_speed = rand_range(-0.0005, 0.0005)
+	direction = Vector2(rand_range(-2, 2), rand_range(-2, 2))
+	rotation_speed = rand_range(-1, 1)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -40,4 +40,4 @@ func _process(delta):
 	var updateVec = self.global_position * direction
 	updateVec = updateVec.normalized() * delta * 25
 	self.translate(updateVec)
-	self.rotate(rotation_speed)
+	self.rotate(rotation_speed * delta)
