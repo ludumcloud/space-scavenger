@@ -38,7 +38,7 @@ margin_top = 4.8373
 margin_right = 316.009
 margin_bottom = 193.837
 
-[node name="AttachmentPopup" parent="CanvasLayer" instance=ExtResource( 4 )]
+[node name="AttachmentPopup" parent="CanvasLayer" instance=ExtResource( 5 )]
 margin_left = 190.452
 margin_top = 114.271
 margin_right = 782.452

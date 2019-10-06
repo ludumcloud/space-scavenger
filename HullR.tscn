@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://HullR.gd" type="Script" id=1]
+[ext_resource path="res://assets/ssck/Orange (9).png" type="Texture" id=2]
+
+[node name="HullR" type="Node2D"]
+position = Vector2( 56, -2 )
+script = ExtResource( 1 )
+
+[node name="Orange (9)" type="Sprite" parent="."]
+position = Vector2( -3.20056, 3.1991 )
+texture = ExtResource( 2 )
+
+[node name="WingRJoint" type="Node2D" parent="."]
+position = Vector2( 54, -58 )
+
+[node name="EngineRJoint" type="Node2D" parent="."]
+position = Vector2( 54, 51 )

@@ -1,28 +1,76 @@
 extends Node2D
 
 var componentType: String
+var componentName: String
+var componentClass: String
+var pos: Vector2
+var velocity: float
 
-func init(cType: String, curPos: Vector2):
-	componentType = cType
+const componentLibrary = {
+	"doepfer-hull-left": {
+		"type": "hull-left",
+		"texture": "res://assets/ssck/Orange (2).png",
+		"name": "Doepfer Hull (left)",
+		"klass": "res://HullL.tscn"
+	},
+	"doepfer-hull-right": {
+		"type": "hull-right",
+		"texture": "res://assets/ssck/Orange (3).png",
+		"name": "Doepfer Hull (left)",
+		"klass": "res://HullR.tscn"
+	},
+	"bastl-hull-simple": {
+		"type": "hull",
+		"texture": "res://assets/ssck/Orange (28).png",
+		"name": "Bastl Micro Hull",
+		"klass": "res://Scaffold.tscn"
+	},
+	"doepfer-wing-left": {
+		"type": "wing-left",
+		"texture": "res://assets/ssck/Orange (14).png",
+		"name": "Doepfer Wing (left)",
+		"klass": "res://WingL.tscn"
+	},
+	"doepfer-wing-right": {
+		"type": "wing-right",
+		"texture": "res://assets/ssck/Orange (15).png",
+		"name": "Doepfer Wing (Right)",
+		"klass": "res://WingR.tscn"
+	},
+	"mutable-engine-left": {
+		"type": "engine-left",
+		"texture": "res://assets/ssck/Orange (6).png",
+		"name": "Mutable Inc. Impulse Engine (Left)",
+		"klass": "res://EngineAL.tscn"
+	},
+	"mutable-engine-right": {
+		"type": "engine-right",
+		"texture": "res://assets/ssck/Orange (7).png",
+		"name": "Mutable Inc. Impulse Engine (Right)",
+		"klass": "res://EngineAR.tscn"
+	},
+	"basimilus-engine-left": {
+		"type": "engine-left",
+		"texture": "res://assets/ssck/Orange (4).png",
+		"name": "Basimilus Ram Scoop Engine (Left)",
+		"klass": "res://EngineBL.tscn"
+	},
+	"basimilus-engine-right": {
+		"type": "engine-right",
+		"texture": "res://assets/ssck/Orange (5).png",
+		"name": "Basimilus Ram Scoop Engine (Right)",
+		"klass": "res://EngineBR.tscn"
+	}
+}
+
+func init(componentKey: String, curPos: Vector2):
+	var descriptor = componentLibrary[componentKey]
+	componentType = descriptor['type']
+	componentName = descriptor['name']
+	componentClass = descriptor['klass']
+	$Sprite.texture = load(descriptor['texture'])
+	
 	self.global_position = curPos
-
-	match cType:
-		"wing-left":
-			$Sprite.texture = load("res://assets/ssck/Orange (14).png")
-		"wing-right":
-			$Sprite.texture = load("res://assets/ssck/Orange (15).png")
-		"hull":
-			$Sprite.texture = load("res://assets/ssck/Orange (2).png")
-		"engine-left":
-			$Sprite.texture = load("res://assets/ssck/Orange (6).png")
-		"engine-right":
-			$Sprite.texture = load("res://assets/ssck/Orange (7).png")
-		"engine-b-l":
-			$Sprite.texture = load("res://assets/ssck/Orange (4).png")
-		"engine-b-r":
-			$Sprite.texture = load("res://assets/ssck/Orange (5).png")
-
-
 	self.scale = Vector2(0.7, 0.7)
 
 # Called when the node enters the scene tree for the first time.
