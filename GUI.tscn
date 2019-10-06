@@ -53,8 +53,8 @@ text = "Fuel"
 
 [node name="Button" type="Button" parent="VBoxContainer"]
 margin_left = 100.0
-margin_top = 40.0
-margin_right = 145.0
-margin_bottom = 60.0
+margin_top = 45.0
+margin_right = 160.0
+margin_bottom = 75.0
 disabled = true
 text = "Warp"
