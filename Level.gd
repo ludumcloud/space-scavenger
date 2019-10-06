@@ -85,12 +85,19 @@ func calc_current_zoom():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_pressed("ui_left"):
-		$Ship.rotate(-PI * delta * $Ship.angularVelocity);
+		$Ship.angle -= delta * $Ship.angularVelocity
 	if Input.is_action_pressed("ui_right"):
-		$Ship.rotate(PI * delta * $Ship.angularVelocity);
+		$Ship.angle += delta * $Ship.angularVelocity
+	
 	if Input.is_action_pressed("ui_up"):
-		$Ship.translate(Vector2(sin($Ship.rotation), -cos($Ship.rotation)) * 90.0 * delta);
+		$Ship.shipVelocity = Vector2($Ship.maxShipSpeed * sin($Ship.angle), $Ship.maxShipSpeed * -cos($Ship.angle))
+	else:
+		$Ship.shipVelocity = Vector2(0.0, 0.0)
+		
+	$Ship.rotation = $Ship.angle
+	$Ship.translate($Ship.shipVelocity)
 
 	calc_current_zoom()
+
 
 
