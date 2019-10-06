@@ -39,6 +39,8 @@ var wingBR: Component
 var angularVelocity = 1.0
 var fuel = 20
 
+var hullNum = 0;
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	ship = HullComponent.new($Cockpit)
@@ -111,6 +113,7 @@ func do_attach(compType: String):
 				currentComp = currentComp.nextCenterComp
 			else:
 				currentComp.add()
+				hullNum += 1;
 				return
 	else:
 		while (currentComp != null):

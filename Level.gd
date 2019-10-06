@@ -52,3 +52,7 @@ func _process(delta):
 	if Input.is_action_pressed("ui_up"):
 		$Ship.translate(Vector2(sin($Ship.rotation), -cos($Ship.rotation)) * 30.0 * delta);
 
+	var zoomFactor = ($Ship.hullNum * 0.2) + 1;
+	$ParallaxBackground.set_scale(Vector2(zoomFactor, zoomFactor));
+	$Ship/Camera2D.set_zoom(Vector2(zoomFactor, zoomFactor));
+
