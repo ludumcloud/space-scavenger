@@ -1,6 +1,8 @@
 extends Node2D
 
 var Scaffold = preload("res://Scaffold.tscn")
+var WingL = preload("res://WingL.tscn")
+var WingR = preload("res://WingR.tscn")
 
 var ship = null
 
@@ -21,14 +23,21 @@ func do_attach(compType: String):
 	if joint == null:
 		return
 	
-	
 	match compType:
-		'wing':
-			print('added wing')
+		'wing-left':
+			print('added wing left')
 			angularVelocity += 0.2
+			var node = WingL.instance()
+			print("instancing")
+			print(node)
+			joint.attach(node)
+		'wing-right':
+			print('added wing right')
+			angularVelocity += 0.2
+			joint.attach(WingR.instance())
 		'hull':
 			print('added hull')
-			joint.joint.add_child(Scaffold.instance())
+			joint.attach(Scaffold.instance())
 			
 
 func add_resource(resourceType: String):

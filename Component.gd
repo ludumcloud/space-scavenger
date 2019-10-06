@@ -4,7 +4,8 @@ class_name Component
 class ComponentJoint:
 	var type: String
 	var joint: Node2D
-	var component: Component
+	# This was initially typed but .initialize() only returns Node2D
+	var component
 	
 	func _init(compType: String, initJoint: Node2D):
 		type = compType
@@ -14,14 +15,16 @@ class ComponentJoint:
 	func can_attach(compType: String):
 		return compType == type
 
+	func attach(comp):
+		joint.add_child(comp)
+		component = comp
+
 var joints = []
 
 func get_joints():
 	return joints
 
 static func make_joint(compType: String, initJoint: Node2D):
-	print("In make_joint")
-	print(initJoint)
 	return ComponentJoint.new(compType, initJoint)
 
 func search_joints(compType: String):
@@ -30,7 +33,7 @@ func search_joints(compType: String):
 		# DFS for attachment points
 		var component = joint.component
 		if component != null:
-			attach_joint = component.can_attach(compType)
+			attach_joint = component.search_joints(compType)
 			if attach_joint != null:
 				break
 

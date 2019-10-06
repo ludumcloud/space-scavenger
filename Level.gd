@@ -8,7 +8,8 @@ var CollResource = preload("res://CollResource.tscn")
 var rng = RandomNumberGenerator.new()
 
 var levelOneComponents = [
-	"wing",
+	"wing-left",
+	"wing-right",
 	"hull",
 	"engine-a-l",
 	"engine-a-r",
@@ -30,7 +31,7 @@ func _ready():
 	testComp.init("hull", Vector2(500, 300))
 
 	var testComp2 = CollComponent.instance()
-	testComp2.init("wing", Vector2(300, 500))
+	testComp2.init("wing-left", Vector2(300, 500))
 	
 	self.add_child(testComp)
 	self.add_child(testComp2)

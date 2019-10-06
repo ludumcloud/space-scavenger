@@ -8,8 +8,10 @@ func init(cType: String, curPos: Vector2):
 	self.global_position = curPos
 
 	match cType:
-		"wing":
+		"wing-left":
 			$Sprite.texture = load("res://assets/ssck/Orange (14).png")
+		"wing-right":
+			$Sprite.texture = load("res://assets/ssck/Orange (15).png")
 		"hull":
 			$Sprite.texture = load("res://assets/ssck/Orange (2).png")
 		"engine-a-l":
