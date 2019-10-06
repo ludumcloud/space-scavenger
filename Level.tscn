@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Level.gd" type="Script" id=1]
 [ext_resource path="res://Ship.tscn" type="PackedScene" id=2]
@@ -41,5 +41,5 @@ margin_bottom = 193.837
 [node name="AttachmentPopup" parent="CanvasLayer" instance=ExtResource( 5 )]
 margin_left = 190.452
 margin_top = 114.271
-margin_right = 782.452
+margin_right = 782.451
 margin_bottom = 462.271

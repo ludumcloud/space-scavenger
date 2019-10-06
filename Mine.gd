@@ -34,7 +34,7 @@ func _process(delta):
 		
 	if isTracking:
 		var updateVec = get_parent().get_child(0).position - self.global_position
-		updateVec = updateVec.normalized() * 3
+		updateVec = updateVec.normalized() * delta * 200
 		self.translate(updateVec)
 
 	var ship = get_parent().get_child(0)

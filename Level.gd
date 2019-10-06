@@ -14,13 +14,13 @@ var currentZoomFactor = 0
 var accTime = 0.0
 
 var levelOneComponents = [
-	"wing-left",
-	"wing-right",
-	"hull",
-	"engine-a-l",
-	"engine-a-r",
-	"engine-b-l",
-	"engine-b-r",
+	"doepfer-wing-left",
+	"doepfer-wing-right",
+	"bastl-hull-simple",
+	"mutable-engine-left",
+	"mutable-engine-right",
+	"basimilus-engine-left",
+	"basimilus-engine-right",
 ]
 
 var pause = false
@@ -42,21 +42,18 @@ func generate_collectible_component(set):
 func _ready():
 	rng.randomize()
 	var testComp = CollComponent.instance()
-	testComp.init("hull", Vector2(500, 300))
+	testComp.init("bastl-hull-simple", Vector2(500, 300))
 
 	var testComp2 = CollComponent.instance()
-	testComp2.init("wing-left", Vector2(300, 500))
+	testComp2.init("doepfer-wing-left", Vector2(300, 500))
 	
 	var testComp3 = CollComponent.instance()
-	testComp3.init("engine-left", Vector2(350, 500))
+	testComp3.init("mutable-engine-left", Vector2(350, 500))
 	
 	self.add_child(testComp)
 	self.add_child(testComp2)
 	self.add_child(testComp3)
 
-	generate_collectible_component(levelOneComponents);
-	generate_collectible_component(levelOneComponents);
-	
 	var testResc = CollResource.instance()
 	testResc.init("fuel", Vector2(150, 100))
 	self.add_child(testResc)
@@ -120,7 +117,8 @@ func _process(delta):
 func spawn_object():
 	print('Spawning object')
 	var randAngle = $Ship.angle + rng.randf_range(-0.3, 0.3)
-	var spawn_point = $Ship.position + 100 * $Ship.shipVelocity + 800 * Vector2(sin(randAngle), -cos(randAngle))
+	var spawn_point = $Ship.position + 100 * $Ship.shipVelocity + 800 \
+			* Vector2(sin(randAngle), -cos(randAngle))
 
 	var upperRange = 1000 + accTime * 5
 	if upperRange > 2000:
@@ -131,25 +129,25 @@ func spawn_object():
 	var component
 	if spawnVal <= 100:
 		component = CollComponent.instance()
-		component.init("hull", spawn_point)
+		component.init("bastl-hull-simple", spawn_point)
 	elif spawnVal > 100 && spawnVal <= 200:
 		component = CollComponent.instance()
-		component.init("wing-left", spawn_point)
+		component.init("doepfer-wing-left", spawn_point)
 	elif spawnVal > 200 && spawnVal <= 300:
 		component = CollComponent.instance()
-		component.init("wing-right", spawn_point)
+		component.init("doepfer-wing-right", spawn_point)
 	elif spawnVal > 300 && spawnVal <= 400:
 		component = CollComponent.instance()
-		component.init("engine-a-l", spawn_point)
+		component.init("mutable-engine-left", spawn_point)
 	elif spawnVal > 400 && spawnVal <= 500:
 		component = CollComponent.instance()
-		component.init("engine-b-l", spawn_point)
+		component.init("mutable-engine-right", spawn_point)
 	elif spawnVal > 500 && spawnVal <= 600:
 		component = CollComponent.instance()
-		component.init("engine-a-r", spawn_point)
+		component.init("basimilus-engine-left", spawn_point)
 	elif spawnVal > 600 && spawnVal <= 700:
 		component = CollComponent.instance()
-		component.init("engine-b-r", spawn_point)
+		component.init("basimilus-engine-right", spawn_point)
 	elif spawnVal > 700 && spawnVal <= 1000:
 		component = CollResource.instance()
 		component.init("fuel", spawn_point)

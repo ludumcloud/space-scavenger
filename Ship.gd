@@ -11,7 +11,7 @@ var ship = null
 var angularVelocity = 1.5
 var angle = 0 * PI
 var shipVelocity = Vector2(0.0, 0.0)
-var maxShipSpeed = 5.0
+var maxShipSpeed = 4.0
 var fuel = 20
 
 var hullNum = 0;
@@ -21,9 +21,16 @@ var engineNum = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	ship = $Cockpit
+	reinit()
 
 func reinit():
-	print('BOOOOOOOOOOOOOOOOOOOOM!!!!!!!!!!!!!');
+	ship.clear_joints()
+	angularVelocity = 1.5
+	shipVelocity = Vector2(0.0, 0.0)
+	maxShipSpeed = 4.0
+	fuel = 0
+	hullNum = 0;
+	engineNum = 0
 
 func can_attach(compType: String):
 	var joint = ship.search_joints(compType)
@@ -47,12 +54,10 @@ func do_attach(compType: String):
 			joint.attach(WingR.instance())
 		'engine-left':
 			print('added engine left')
-			maxShipSpeed += 1
 			joint.attach(EngineL.instance())
 			engineNum += 1
 		'engine-right':
 			print('added engine right')
-			maxShipSpeed += 1
 			joint.attach(EngineR.instance())
 			engineNum += 1
 		'hull':
@@ -68,5 +73,10 @@ func add_resource(resourceType: String):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	var speed
+	if fuel < 0.001:
+		speed = 4.0
+	else:
+		speed = 6.0 + engineNum
 	if shipVelocity.length() > 0:
-		fuel -= engineNum * 0.01
+		fuel -= engineNum  * delta

@@ -2,30 +2,35 @@ extends Node2D
 class_name Component
 
 class ComponentJoint:
-	var type: String
+	var types: Array
 	var joint: Node2D
 	# This was initially typed but .initialize() only returns Node2D
 	var component
 	
-	func _init(compType: String, initJoint: Node2D):
-		type = compType
+	func _init(compTypes: Array, initJoint: Node2D):
+		types = compTypes
 		joint = initJoint
 		component = null
 
 	func can_attach(compType: String):
-		return (compType == type) and (component == null)
+		return types.has(compType) and (component == null)
 
 	func attach(comp):
 		joint.add_child(comp)
 		component = comp
+
+	func detach():
+		if component != null:
+			joint.remove_child(component)
+			component = null
 
 var joints = []
 
 func get_joints():
 	return joints
 
-static func make_joint(compType: String, initJoint: Node2D):
-	return ComponentJoint.new(compType, initJoint)
+static func make_joint(compTypes: Array, initJoint: Node2D):
+	return ComponentJoint.new(compTypes, initJoint)
 
 func search_joints(compType: String):
 	var attach_joint = null
@@ -42,3 +47,7 @@ func search_joints(compType: String):
 			break
 
 	return attach_joint
+
+func clear_joints():
+	for joint in joints:
+		joint.detach()
