@@ -8,10 +8,14 @@ var EngineR = preload("res://EngineAR.tscn")
 
 var ship = null
 
-var angularVelocity = 0.5
+var angularVelocity = 1.5
+var angle = 0 * PI
+var shipVelocity = Vector2(0.0, 0.0)
+var maxShipSpeed = 5.0
 var fuel = 20
 
 var hullNum = 0;
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -31,19 +35,19 @@ func do_attach(compType: String):
 	match compType:
 		'wing-left':
 			print('added wing left')
-			angularVelocity += 0.2
+			angularVelocity += 0.4
 			joint.attach(WingL.instance())
 		'wing-right':
 			print('added wing right')
-			angularVelocity += 0.2
+			angularVelocity += 0.4
 			joint.attach(WingR.instance())
 		'engine-left':
 			print('added engine left')
-			#velocity += 0.2
+			maxShipSpeed += 1
 			joint.attach(EngineL.instance())
 		'engine-right':
 			print('added engine right')
-			#velocity += 0.2
+			maxShipSpeed += 1
 			joint.attach(EngineR.instance())
 		'hull':
 			print('added hull')
