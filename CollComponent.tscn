@@ -1,8 +1,23 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://CollComponent.gd" type="Script" id=1]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+void fragment() {
+	vec4 col = texture(TEXTURE, UV);
+	float grey = (col.r + col.g + col.b) * 0.333;
+	// Apply greyscale color (same for red, green and blue, then we keep the same alpha)
+	COLOR = vec4(grey, grey, grey, col.a);
+}
+"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
 
 [node name="CollComponent" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 2 )
