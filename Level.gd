@@ -1,11 +1,14 @@
 extends Node2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 var CollComponent = preload("res://CollComponent.tscn")
 var CollResource = preload("res://CollResource.tscn")
 var rng = RandomNumberGenerator.new()
+
+var zoomTransitionClicks = 0
+var zoomTransitionStep = 0
+var zoomTransitionTarget = 0
+
+var currentZoomFactor = 0
 
 var levelOneComponents = [
 	"wing-left",
@@ -44,8 +47,39 @@ func _ready():
 	generate_collectible_component(levelOneComponents);
 	
 	var testResc = CollResource.instance()
-	testResc.init("fuel", Vector2(100, 100))
+	testResc.init("fuel", Vector2(150, 100))
 	self.add_child(testResc)
+
+
+func calc_current_zoom():
+	#
+	# Allow for zooming transitions to generate
+	# smooth zooming transitions when adding
+	# to the ship.
+	#
+	var zoomFactor = ($Ship.hullNum * 0.2) + 1;
+	var needsUpdate = false
+
+	if currentZoomFactor == 0:
+		# Initialize from the scene
+		currentZoomFactor = zoomFactor
+		needsUpdate = true
+	elif zoomFactor != currentZoomFactor:
+		if zoomTransitionClicks == 0:
+			zoomTransitionClicks = 20
+			zoomTransitionStep = (zoomFactor - currentZoomFactor) / zoomTransitionClicks
+		elif zoomTransitionClicks == 1:
+			currentZoomFactor = zoomFactor # save exact float value for cmp
+			needsUpdate = true
+		else:
+			currentZoomFactor += zoomTransitionStep
+			needsUpdate = true
+
+		zoomTransitionClicks -= 1
+
+	if needsUpdate:
+		$ParallaxBackground.set_scale(Vector2(currentZoomFactor, currentZoomFactor));
+		$Ship/Camera2D.set_zoom(Vector2(currentZoomFactor, currentZoomFactor));
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -63,8 +97,7 @@ func _process(delta):
 	$Ship.rotation = $Ship.angle
 	$Ship.translate($Ship.shipVelocity)
 
-	var zoomFactor = ($Ship.hullNum * 0.2) + 1;
-	$ParallaxBackground.set_scale(Vector2(zoomFactor, zoomFactor));
-	$Ship/Camera2D.set_zoom(Vector2(zoomFactor, zoomFactor));
+	calc_current_zoom()
+
 
 

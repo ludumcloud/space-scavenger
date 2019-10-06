@@ -3,19 +3,9 @@ extends Node2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-var resourceType: String
-var pos: Vector2
 
-func init(type: String, curPos: Vector2):
-	resourceType = type
-	pos = curPos
-	self.global_position = pos
-	
-	match type:
-		"fuel":
-			$Sprite.texture = load("res://assets/ssck/Blue (36).png")
-	
-	self.scale = Vector2(0.4, 0.4)
+func init(position: Vector2):
+	self.global_position = position
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,6 +15,5 @@ func _ready():
 func _process(delta):
 	var ship = get_parent().get_child(0)
 	if (ship.global_position - self.global_position).length() < 100:
-		ship.add_resource(resourceType)
+		ship.reinit()
 		get_parent().remove_child(self)
-
