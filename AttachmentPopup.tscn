@@ -3,9 +3,9 @@
 [ext_resource path="res://AttachmentPopup.gd" type="Script" id=1]
 
 [node name="AttachmentPopup" type="Popup"]
-visible = true
 margin_right = 598.0
 margin_bottom = 337.0
+popup_exclusive = true
 script = ExtResource( 1 )
 
 [node name="ColorRect" type="ColorRect" parent="."]

@@ -23,6 +23,14 @@ var levelOneComponents = [
 	"engine-b-r",
 ]
 
+var pause = false
+
+func pause():
+	pause = true
+
+func unpause():
+	pause = false
+
 func generate_collectible_component(set):
 	var compType = set[rng.randi_range(0, set.size()-1)]
 	var component = CollComponent.instance()
@@ -87,6 +95,8 @@ func calc_current_zoom():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if(pause == true):
+		return
 	accTime += delta
 	if Input.is_action_pressed("ui_left"):
 		$Ship.angle -= delta * $Ship.angularVelocity

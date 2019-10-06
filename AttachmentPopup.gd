@@ -4,18 +4,29 @@ extends Popup
 # var a = 2
 # var b = "text"
 
-func on_attach(): 
-	pass
+func close_and_unpause():
+	self.hide()
+	get_parent().get_parent().unpause()
+
+func on_attach():
+	print("AAATTAAACHED")
+	close_and_unpause()
 	
 func on_scrap():
-	pass
+	print("SCRAAAAAPPEEDD")
+	close_and_unpause()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	#self.set_exlusive(true)
+	$ColorRect/AttachButton.connect("pressed", self, "on_attach")
+	$ColorRect/ScrapButton.connect("pressed", self, "on_scrap")
+	
 	
 	
 	#pass # Replace with function body.
+
+
 
 func set_text(compType, attachAmt, scrapAmt, currentMetal, maxMetal):
 	var l1 = $ColorRect/line1
