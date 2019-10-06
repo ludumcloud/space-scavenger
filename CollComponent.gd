@@ -60,6 +60,18 @@ var componentLibrary = {
 		"texture": "res://assets/ssck/Orange (5).png",
 		"name": "Basimilus Ram Scoop Engine (Right)",
 		"klass": preload("res://EngineBR.tscn")
+	},
+	"basimilus-wing-left": {
+		"type": "wing-left",
+		"texture": "res://assets/ssck/Orange (18).png",
+		"name": "Basimilus Vector Wing (Left)",
+		"klass": preload("res://WingBL.tscn")
+	},
+	"basimilus-wing-right": {
+		"type": "wing-right",
+		"texture": "res://assets/ssck/Orange (19).png",
+		"name": "Basimilus Vector Wing (Right)",
+		"klass": preload("res://WingBR.tscn")
 	}
 }
 
