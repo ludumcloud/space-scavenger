@@ -27,6 +27,7 @@ func do_attach(compType: String):
 	if joint == null:
 		return
 	
+	hullNum += 1
 	match compType:
 		'wing-left':
 			print('added wing left')
