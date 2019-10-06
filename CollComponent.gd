@@ -6,6 +6,8 @@ var componentClass
 var pos: Vector2
 var velocity: float
 
+var rotation_speed: float
+
 var direction: Vector2
 
 var componentLibrary = {
@@ -84,6 +86,8 @@ func init(componentKey: String, curPos: Vector2):
 	componentClass = descriptor['klass']
 	$Sprite.texture = load(descriptor['texture'])
 
+	rotation_speed = rand_range(-0.0005, 0.0005)
+
 	direction = Vector2(rand_range(-1, 1), rand_range(-1, 1))
 
 	self.global_position = curPos
@@ -101,7 +105,7 @@ func _process(delta):
 	if (distance) < 80:
 		if(ship.can_attach(componentType)):
 			print("Can attach")
-			# var attachPopup = get_parent().get_node('CanvasLayer/AttachmentPopup')
+
 			# attachPopup.set_text(componentType, 10, 5, 80, 100)
 			# attachPopup.popup()
 			ship.do_attach(componentType, componentClass.instance())
@@ -115,4 +119,5 @@ func _process(delta):
 	updateVec = updateVec.normalized() * delta * 25
 	self.translate(updateVec)
 
+	self.rotate(rotation_speed)
 
