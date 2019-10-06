@@ -128,10 +128,10 @@ func spawn_object():
 		component.init("doepfer-wing-right", spawn_point)
 	elif spawnVal > 300 && spawnVal <= 400:
 		component = CollComponent.instance()
-		component.init("mutable-engine-left", spawn_point)
+		component.init("doepfer-hull-left", spawn_point)
 	elif spawnVal > 400 && spawnVal <= 500:
 		component = CollComponent.instance()
-		component.init("mutable-engine-right", spawn_point)
+		component.init("doepfer-hull-right", spawn_point)
 	elif spawnVal > 500 && spawnVal <= 600:
 		component = CollComponent.instance()
 		component.init("basimilus-engine-left", spawn_point)
