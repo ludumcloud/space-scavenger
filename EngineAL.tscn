@@ -9,3 +9,10 @@ script = ExtResource( 1 )
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -39.5555, 15.1111 )
 texture = ExtResource( 2 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2( -46.2222, 99.1111 )
+emission_shape = 1
+emission_sphere_radius = 10.0
+spread = 75.0
+scale_amount = 4.0
