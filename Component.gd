@@ -13,7 +13,7 @@ class ComponentJoint:
 		component = null
 
 	func can_attach(compType: String):
-		return compType == type
+		return (compType == type) and (component == null)
 
 	func attach(comp):
 		joint.add_child(comp)

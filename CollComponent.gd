@@ -14,9 +14,9 @@ func init(cType: String, curPos: Vector2):
 			$Sprite.texture = load("res://assets/ssck/Orange (15).png")
 		"hull":
 			$Sprite.texture = load("res://assets/ssck/Orange (2).png")
-		"engine-a-l":
+		"engine-left":
 			$Sprite.texture = load("res://assets/ssck/Orange (6).png")
-		"engine-a-r":
+		"engine-right":
 			$Sprite.texture = load("res://assets/ssck/Orange (7).png")
 		"engine-b-l":
 			$Sprite.texture = load("res://assets/ssck/Orange (4).png")

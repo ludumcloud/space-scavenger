@@ -3,11 +3,15 @@ extends Node2D
 var Scaffold = preload("res://Scaffold.tscn")
 var WingL = preload("res://WingL.tscn")
 var WingR = preload("res://WingR.tscn")
+var EngineL = preload("res://EngineAL.tscn")
+var EngineR = preload("res://EngineAR.tscn")
 
 var ship = null
 
 var angularVelocity = 0.5
 var fuel = 20
+
+var hullNum = 0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,14 +31,19 @@ func do_attach(compType: String):
 		'wing-left':
 			print('added wing left')
 			angularVelocity += 0.2
-			var node = WingL.instance()
-			print("instancing")
-			print(node)
-			joint.attach(node)
+			joint.attach(WingL.instance())
 		'wing-right':
 			print('added wing right')
 			angularVelocity += 0.2
 			joint.attach(WingR.instance())
+		'engine-left':
+			print('added engine left')
+			#velocity += 0.2
+			joint.attach(EngineL.instance())
+		'engine-right':
+			print('added engine right')
+			#velocity += 0.2
+			joint.attach(EngineR.instance())
 		'hull':
 			print('added hull')
 			joint.attach(Scaffold.instance())
