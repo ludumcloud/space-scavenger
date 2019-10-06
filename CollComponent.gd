@@ -2,64 +2,64 @@ extends Node2D
 
 var componentType: String
 var componentName: String
-var componentClass: String
+var componentClass
 var pos: Vector2
 var velocity: float
 
-const componentLibrary = {
+var componentLibrary = {
 	"doepfer-hull-left": {
 		"type": "hull-left",
 		"texture": "res://assets/ssck/Orange (2).png",
 		"name": "Doepfer Hull (left)",
-		"klass": "res://HullL.tscn"
+		"klass": preload("res://HullL.tscn")
 	},
 	"doepfer-hull-right": {
 		"type": "hull-right",
 		"texture": "res://assets/ssck/Orange (3).png",
 		"name": "Doepfer Hull (left)",
-		"klass": "res://HullR.tscn"
+		"klass": preload("res://HullR.tscn")
 	},
 	"bastl-hull-simple": {
 		"type": "hull",
 		"texture": "res://assets/ssck/Orange (28).png",
 		"name": "Bastl Micro Hull",
-		"klass": "res://Scaffold.tscn"
+		"klass": preload("res://Scaffold.tscn")
 	},
 	"doepfer-wing-left": {
 		"type": "wing-left",
 		"texture": "res://assets/ssck/Orange (14).png",
 		"name": "Doepfer Wing (left)",
-		"klass": "res://WingL.tscn"
+		"klass": preload("res://WingL.tscn")
 	},
 	"doepfer-wing-right": {
 		"type": "wing-right",
 		"texture": "res://assets/ssck/Orange (15).png",
 		"name": "Doepfer Wing (Right)",
-		"klass": "res://WingR.tscn"
+		"klass": preload("res://WingR.tscn")
 	},
 	"mutable-engine-left": {
 		"type": "engine-left",
 		"texture": "res://assets/ssck/Orange (6).png",
 		"name": "Mutable Inc. Impulse Engine (Left)",
-		"klass": "res://EngineAL.tscn"
+		"klass": preload("res://EngineAL.tscn")
 	},
 	"mutable-engine-right": {
 		"type": "engine-right",
 		"texture": "res://assets/ssck/Orange (7).png",
 		"name": "Mutable Inc. Impulse Engine (Right)",
-		"klass": "res://EngineAR.tscn"
+		"klass": preload("res://EngineAR.tscn")
 	},
 	"basimilus-engine-left": {
 		"type": "engine-left",
 		"texture": "res://assets/ssck/Orange (4).png",
 		"name": "Basimilus Ram Scoop Engine (Left)",
-		"klass": "res://EngineBL.tscn"
+		"klass": preload("res://EngineBL.tscn")
 	},
 	"basimilus-engine-right": {
 		"type": "engine-right",
 		"texture": "res://assets/ssck/Orange (5).png",
 		"name": "Basimilus Ram Scoop Engine (Right)",
-		"klass": "res://EngineBR.tscn"
+		"klass": preload("res://EngineBR.tscn")
 	}
 }
 
@@ -87,7 +87,7 @@ func _process(delta):
 			# var attachPopup = get_parent().get_node('CanvasLayer/AttachmentPopup')
 			# attachPopup.set_text(componentType, 10, 5, 80, 100)
 			# attachPopup.popup()
-			ship.do_attach(componentType)
+			ship.do_attach(componentType, componentClass.instance())
 			get_parent().remove_child(self)
 
 	#distance based cleanup

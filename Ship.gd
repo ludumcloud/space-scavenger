@@ -37,7 +37,7 @@ func can_attach(compType: String):
 	return joint != null
 
 # pretty much the same as above, but with actions
-func do_attach(compType: String):
+func do_attach(compType: String, node):
 	var joint = ship.search_joints(compType)
 	if joint == null:
 		return
@@ -47,23 +47,18 @@ func do_attach(compType: String):
 		'wing-left':
 			print('added wing left')
 			angularVelocity += 0.4
-			joint.attach(WingL.instance())
 		'wing-right':
 			print('added wing right')
 			angularVelocity += 0.4
-			joint.attach(WingR.instance())
 		'engine-left':
 			print('added engine left')
-			joint.attach(EngineL.instance())
 			engineNum += 1
 		'engine-right':
 			print('added engine right')
-			joint.attach(EngineR.instance())
 			engineNum += 1
 		'hull':
 			print('added hull')
-			joint.attach(Scaffold.instance())
-
+	joint.attach(node)
 
 func add_resource(resourceType: String):
 	match resourceType:
