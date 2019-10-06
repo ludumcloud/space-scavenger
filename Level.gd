@@ -2,6 +2,7 @@ extends Node2D
 
 var CollComponent = preload("res://CollComponent.tscn")
 var CollResource = preload("res://CollResource.tscn")
+var Mine = preload("res://Mine.tscn")
 var rng = RandomNumberGenerator.new()
 
 var zoomTransitionClicks = 0
@@ -9,6 +10,8 @@ var zoomTransitionStep = 0
 var zoomTransitionTarget = 0
 
 var currentZoomFactor = 0
+
+var accTime = 0.0
 
 var levelOneComponents = [
 	"wing-left",
@@ -56,7 +59,7 @@ func calc_current_zoom():
 	# Allow for zooming transitions to generate
 	# smooth zooming transitions when adding
 	# to the ship.
-	#
+	#u
 	var zoomFactor = ($Ship.hullNum * 0.2) + 1;
 	var needsUpdate = false
 
@@ -84,6 +87,7 @@ func calc_current_zoom():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	accTime += delta
 	if Input.is_action_pressed("ui_left"):
 		$Ship.angle -= delta * $Ship.angularVelocity
 	if Input.is_action_pressed("ui_right"):
@@ -96,8 +100,49 @@ func _process(delta):
 		
 	$Ship.rotation = $Ship.angle
 	$Ship.translate($Ship.shipVelocity)
+	
+	if (rng.randi_range(0, 300) > 299):
+		spawn_object()
 
 	calc_current_zoom()
 
-
+func spawn_object():
+	print('Spawning object')
+	var randAngle = $Ship.angle + rng.randf_range(-0.3, 0.3)
+	var spawn_point = $Ship.position + 100 * $Ship.shipVelocity + 800 * Vector2(sin(randAngle), -cos(randAngle))
+	print(spawn_point)
+	
+	var spawnVal = rng.randi_range(0, 1000)
+	
+	var component
+	if spawnVal <= 100:
+		component = CollComponent.instance()
+		component.init("hull", spawn_point)
+	elif spawnVal > 100 && spawnVal <= 200:
+		component = CollComponent.instance()
+		component.init("wing-left", spawn_point)
+	elif spawnVal > 200 && spawnVal <= 300:
+		component = CollComponent.instance()
+		component.init("wing-right", spawn_point)
+	elif spawnVal > 300 && spawnVal <= 400:
+		component = CollComponent.instance()
+		component.init("engine-a-l", spawn_point)
+	elif spawnVal > 400 && spawnVal <= 500:
+		component = CollComponent.instance()
+		component.init("engine-b-l", spawn_point)
+	elif spawnVal > 500 && spawnVal <= 600:
+		component = CollComponent.instance()
+		component.init("engine-a-r", spawn_point)
+	elif spawnVal > 600 && spawnVal <= 700:
+		component = CollComponent.instance()
+		component.init("engine-b-r", spawn_point)
+	elif spawnVal > 700 && spawnVal <= 1000:
+		component = CollResource.instance()
+		component.init("fuel", spawn_point)
+	elif spawnVal > 1000:
+		component = Mine.instance()
+		component.init(spawn_point, accTime)
+	
+		
+	self.add_child(component)
 
