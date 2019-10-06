@@ -24,11 +24,6 @@ config/name="Space Scavenger"
 run/main_scene="res://Level.tscn"
 config/icon="res://icon.png"
 
-[display]
-
-window/size/width=1320
-window/size/height=960
-
 [input]
 
 ui_left={

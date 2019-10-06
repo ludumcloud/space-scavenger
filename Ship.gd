@@ -15,6 +15,7 @@ var maxShipSpeed = 5.0
 var fuel = 20
 
 var hullNum = 0;
+var engineNum = 0
 
 
 # Called when the node enters the scene tree for the first time.
@@ -48,10 +49,12 @@ func do_attach(compType: String):
 			print('added engine left')
 			maxShipSpeed += 1
 			joint.attach(EngineL.instance())
+			engineNum += 1
 		'engine-right':
 			print('added engine right')
 			maxShipSpeed += 1
 			joint.attach(EngineR.instance())
+			engineNum += 1
 		'hull':
 			print('added hull')
 			joint.attach(Scaffold.instance())
@@ -64,5 +67,6 @@ func add_resource(resourceType: String):
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	if shipVelocity.length() > 0:
+		fuel -= engineNum * 0.01
