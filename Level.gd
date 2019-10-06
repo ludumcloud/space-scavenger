@@ -127,7 +127,6 @@ func _process(delta):
 	calc_current_zoom()
 
 func spawn_object():
-	print('Spawning object')
 	var randAngle = $Ship.angle + rng.randf_range(-0.3, 0.3)
 	var spawn_point = $Ship.position + 100 * $Ship.shipVelocity + 800 \
 			* Vector2(sin(randAngle), -cos(randAngle))

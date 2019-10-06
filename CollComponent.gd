@@ -104,8 +104,6 @@ func _process(delta):
 	var distance = (ship.global_position - self.global_position).length()
 	if (distance) < 80:
 		if(ship.can_attach(componentType)):
-			print("Can attach")
-
 			# attachPopup.set_text(componentType, 10, 5, 80, 100)
 			# attachPopup.popup()
 			ship.do_attach(componentType, componentClass.instance())
