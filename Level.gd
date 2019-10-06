@@ -102,7 +102,8 @@ func _process(delta):
 	$Ship.translate($Ship.shipVelocity)
 	
 	if (rng.randi_range(0, 300) > 299):
-		spawn_object()
+		if $Ship.shipVelocity.length() > 0:
+			spawn_object()
 
 	calc_current_zoom()
 
