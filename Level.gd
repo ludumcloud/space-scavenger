@@ -23,6 +23,23 @@ var levelOneComponents = [
 	"basimilus-engine-right",
 ]
 
+var collectibles = [
+	{ "type": "fuel", "weight": 10 },
+	{ "type": "doepfer-hull-left", "weight": 1 },
+	{ "type": "doepfer-hull-right", "weight": 1 },
+	{ "type": "bastl-hull-simple", "weight": 2 },
+	{ "type": "doepfer-wing-left", "weight": 1},
+	{ "type": "doepfer-wing-right", "weight": 1 },
+	{ "type": "mutable-engine-left", "weight": 2 },
+	{ "type": "mutable-engine-right", "weight": 2 }
+]
+
+var stuffBag = []
+func gen_bag():
+	for obj in collectibles:
+		for i in range(0, obj.weight):
+			stuffBag.append(obj.type)
+
 func generate_collectible_component(set):
 	var compType = set[rng.randi_range(0, set.size()-1)]
 	var component = CollComponent.instance()
@@ -32,6 +49,7 @@ func generate_collectible_component(set):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	gen_bag()
 	rng.randomize()
 	var testComp = CollComponent.instance()
 	testComp.init("bastl-hull-simple", Vector2(500, 300))
@@ -85,6 +103,8 @@ func calc_current_zoom():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	accTime += delta
+	if stuffBag.size() == 0:
+		gen_bag()
 	if Input.is_action_pressed("ui_left"):
 		$Ship.angle -= delta * $Ship.angularVelocity
 	if Input.is_action_pressed("ui_right"):
@@ -117,30 +137,15 @@ func spawn_object():
 	var spawnVal = rng.randi_range(0, upperRange)
 
 	var component
-	if spawnVal <= 100:
-		component = CollComponent.instance()
-		component.init("bastl-hull-simple", spawn_point)
-	elif spawnVal > 100 && spawnVal <= 200:
-		component = CollComponent.instance()
-		component.init("doepfer-wing-left", spawn_point)
-	elif spawnVal > 200 && spawnVal <= 300:
-		component = CollComponent.instance()
-		component.init("doepfer-wing-right", spawn_point)
-	elif spawnVal > 300 && spawnVal <= 400:
-		component = CollComponent.instance()
-		component.init("doepfer-hull-left", spawn_point)
-	elif spawnVal > 400 && spawnVal <= 500:
-		component = CollComponent.instance()
-		component.init("doepfer-hull-right", spawn_point)
-	elif spawnVal > 500 && spawnVal <= 600:
-		component = CollComponent.instance()
-		component.init("basimilus-engine-left", spawn_point)
-	elif spawnVal > 600 && spawnVal <= 700:
-		component = CollComponent.instance()
-		component.init("basimilus-engine-right", spawn_point)
-	elif spawnVal > 700 && spawnVal <= 1000:
-		component = CollResource.instance()
-		component.init("fuel", spawn_point)
+	if spawnVal <= 1000:
+		var index = spawnVal % stuffBag.size()
+		if stuffBag[index] == "fuel":
+			component = CollResource.instance()
+			component.init("fuel", spawn_point)
+		else:
+			component = CollComponent.instance()
+			component.init(stuffBag[index], spawn_point)
+		stuffBag.remove(index)
 	elif spawnVal > 1000:
 		component = Mine.instance()
 		component.init(spawn_point, accTime)
