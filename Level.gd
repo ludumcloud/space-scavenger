@@ -8,7 +8,8 @@ var CollResource = preload("res://CollResource.tscn")
 var rng = RandomNumberGenerator.new()
 
 var levelOneComponents = [
-	"wing",
+	"wing-left",
+	"wing-right",
 	"hull",
 	"engine-a-l",
 	"engine-a-r",
@@ -30,10 +31,14 @@ func _ready():
 	testComp.init("hull", Vector2(500, 300))
 
 	var testComp2 = CollComponent.instance()
-	testComp2.init("wing", Vector2(300, 500))
+	testComp2.init("wing-left", Vector2(300, 500))
+	
+	var testComp3 = CollComponent.instance()
+	testComp3.init("engine-left", Vector2(350, 500))
 	
 	self.add_child(testComp)
 	self.add_child(testComp2)
+	self.add_child(testComp3)
 
 	generate_collectible_component(levelOneComponents);
 	generate_collectible_component(levelOneComponents);
@@ -41,7 +46,7 @@ func _ready():
 	var testResc = CollResource.instance()
 	testResc.init("fuel", Vector2(100, 100))
 	self.add_child(testResc)
-	self.add_child(testComp2)
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -50,7 +55,7 @@ func _process(delta):
 	if Input.is_action_pressed("ui_right"):
 		$Ship.rotate(PI * delta * $Ship.angularVelocity);
 	if Input.is_action_pressed("ui_up"):
-		$Ship.translate(Vector2(sin($Ship.rotation), -cos($Ship.rotation)) * 30.0 * delta);
+		$Ship.translate(Vector2(sin($Ship.rotation), -cos($Ship.rotation)) * 90.0 * delta);
 
 	var zoomFactor = ($Ship.hullNum * 0.2) + 1;
 	$ParallaxBackground.set_scale(Vector2(zoomFactor, zoomFactor));

@@ -8,13 +8,15 @@ func init(cType: String, curPos: Vector2):
 	self.global_position = curPos
 
 	match cType:
-		"wing":
+		"wing-left":
 			$Sprite.texture = load("res://assets/ssck/Orange (14).png")
+		"wing-right":
+			$Sprite.texture = load("res://assets/ssck/Orange (15).png")
 		"hull":
 			$Sprite.texture = load("res://assets/ssck/Orange (2).png")
-		"engine-a-l":
+		"engine-left":
 			$Sprite.texture = load("res://assets/ssck/Orange (6).png")
-		"engine-a-r":
+		"engine-right":
 			$Sprite.texture = load("res://assets/ssck/Orange (7).png")
 		"engine-b-l":
 			$Sprite.texture = load("res://assets/ssck/Orange (4).png")
@@ -33,7 +35,8 @@ func _process(delta):
 	var ship = get_parent().get_child(0)
 	if (ship.global_position - self.global_position).length() < 80:
 		if(ship.can_attach(componentType)):
-			get_parent().get_node('CanvasLayer/AttachmentPopup').popup()
+			print("Can attach")
+			# get_parent().get_node('CanvasLayer/AttachmentPopup').popup()
 			ship.do_attach(componentType)
 			get_parent().remove_child(self)
 

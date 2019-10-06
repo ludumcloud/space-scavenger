@@ -5,4 +5,5 @@
 [node name="EngineBL" type="Node2D"]
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -39.7037, -13.6296 )
 texture = ExtResource( 1 )
