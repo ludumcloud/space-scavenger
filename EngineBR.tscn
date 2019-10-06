@@ -9,3 +9,9 @@ script = ExtResource( 1 )
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 37.3333, -14.6667 )
 texture = ExtResource( 2 )
+
+[node name="WingRJoint" type="Node2D" parent="."]
+position = Vector2( 81, -23 )
+
+[node name="EngineRJoint" type="Node2D" parent="."]
+position = Vector2( 84, 25 )
