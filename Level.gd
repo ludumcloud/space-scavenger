@@ -46,10 +46,10 @@ func _ready():
 
 	var testComp2 = CollComponent.instance()
 	testComp2.init("doepfer-wing-left", Vector2(300, 500))
-	
+
 	var testComp3 = CollComponent.instance()
 	testComp3.init("mutable-engine-left", Vector2(350, 500))
-	
+
 	self.add_child(testComp)
 	self.add_child(testComp2)
 	self.add_child(testComp3)
@@ -99,15 +99,15 @@ func _process(delta):
 		$Ship.angle -= delta * $Ship.angularVelocity
 	if Input.is_action_pressed("ui_right"):
 		$Ship.angle += delta * $Ship.angularVelocity
-	
+
 	if Input.is_action_pressed("ui_up"):
 		$Ship.shipVelocity = Vector2($Ship.maxShipSpeed * sin($Ship.angle), $Ship.maxShipSpeed * -cos($Ship.angle))
 	else:
 		$Ship.shipVelocity = Vector2(0.0, 0.0)
-		
+
 	$Ship.rotation = $Ship.angle
-	$Ship.translate($Ship.shipVelocity)
-	
+	$Ship.translate($Ship.shipVelocity * delta * 50)
+
 	if (rng.randi_range(0, 300) > 298):
 		if $Ship.shipVelocity.length() > 0:
 			spawn_object()
@@ -123,9 +123,9 @@ func spawn_object():
 	var upperRange = 1000 + accTime * 5
 	if upperRange > 2000:
 		upperRange = 2000
-	
+
 	var spawnVal = rng.randi_range(0, upperRange)
-	
+
 	var component
 	if spawnVal <= 100:
 		component = CollComponent.instance()
@@ -154,7 +154,7 @@ func spawn_object():
 	elif spawnVal > 1000:
 		component = Mine.instance()
 		component.init(spawn_point, accTime)
-	
-		
+
+
 	self.add_child(component)
 
