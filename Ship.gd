@@ -58,6 +58,10 @@ func do_attach(compType: String, node):
 			engineNum += 1
 		'hull':
 			print('added hull')
+		'hull-left':
+			print('added hull left')
+		'hull-rigth':
+			print('added hull right')
 	joint.attach(node)
 
 func add_resource(resourceType: String):
