@@ -12,9 +12,10 @@ var angularVelocity = 1.5
 var angle = 0 * PI
 var shipVelocity = Vector2(0.0, 0.0)
 var maxShipSpeed = 4.0
-var fuel = 20
+var fuel = 0
+var fuelMax = 100
 
-var hullNum = 0;
+var hullNum = 0
 var engineNum = 0
 
 
@@ -29,8 +30,10 @@ func reinit():
 	shipVelocity = Vector2(0.0, 0.0)
 	maxShipSpeed = 4.0
 	fuel = 0
-	hullNum = 0;
+	fuelMax = 100
+	hullNum = 0
 	engineNum = 0
+	get_parent().reset_time()
 
 func can_attach(compType: String):
 	var joint = ship.search_joints(compType)
@@ -58,10 +61,13 @@ func do_attach(compType: String, node):
 			engineNum += 1
 		'hull':
 			print('added hull')
+			fuelMax += 100
 		'hull-left':
 			print('added hull left')
+			fuelMax += 50
 		'hull-rigth':
 			print('added hull right')
+			fuelMax += 50
 	joint.attach(node)
 
 func add_resource(resourceType: String):

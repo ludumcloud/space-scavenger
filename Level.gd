@@ -68,6 +68,8 @@ func _ready():
 	testResc.init("fuel", Vector2(150, 100))
 	self.add_child(testResc)
 
+func reset_time():
+	accTime = 0
 
 func calc_current_zoom():
 	#
