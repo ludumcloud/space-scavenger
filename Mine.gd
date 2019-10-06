@@ -11,7 +11,7 @@ func init(position: Vector2, currGameTime):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$AnimatedSprite.connect("animation_finished", self, 'on_animation_finished')
 
 func setActive(newActive):
 	isActive = newActive
@@ -42,8 +42,12 @@ func _process(delta):
 	if (isActive):
 		if distance < 100:
 			ship.reinit()
-			get_parent().remove_child(self)
+			$AnimatedSprite.play("explode")
 
 	#distance based cleanup
 	if (distance > 4000):
+		get_parent().remove_child(self)
+
+func on_animation_finished():
+	if $AnimatedSprite.animation == "explode":
 		get_parent().remove_child(self)
