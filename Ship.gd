@@ -29,8 +29,9 @@ func reinit():
 	shipVelocity = Vector2(0.0, 0.0)
 	maxShipSpeed = 4.0
 	fuel = 0
-	hullNum = 0;
+	hullNum = 0
 	engineNum = 0
+	get_parent().reset_time()
 
 func can_attach(compType: String):
 	var joint = ship.search_joints(compType)
