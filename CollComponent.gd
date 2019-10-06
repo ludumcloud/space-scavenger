@@ -36,7 +36,9 @@ func _process(delta):
 	if (ship.global_position - self.global_position).length() < 80:
 		if(ship.can_attach(componentType)):
 			print("Can attach")
-			# get_parent().get_node('CanvasLayer/AttachmentPopup').popup()
+			var attachPopup = get_parent().get_node('CanvasLayer/AttachmentPopup')
+			attachPopup.set_text(componentType, 10, 5, 80, 100)
+			attachPopup.popup()
 			ship.do_attach(componentType)
 			get_parent().remove_child(self)
 
