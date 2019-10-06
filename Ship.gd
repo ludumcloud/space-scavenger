@@ -69,4 +69,4 @@ func add_resource(resourceType: String):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if shipVelocity.length() > 0:
-		fuel -= engineNum * 0.01
+		fuel -= engineNum  * delta
