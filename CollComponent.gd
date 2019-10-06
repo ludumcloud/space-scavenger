@@ -24,7 +24,7 @@ func init(cType: String, curPos: Vector2):
 			$Sprite.texture = load("res://assets/ssck/Orange (5).png")
 
 
-	# self.scale = Vector2(0.5, 0.5)
+	self.scale = Vector2(0.7, 0.7)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -9,6 +9,7 @@ var pos: Vector2
 func init(type: String, curPos: Vector2):
 	resourceType = type
 	pos = curPos
+	self.global_position = pos
 	
 	match type:
 		"fuel":

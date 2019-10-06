@@ -44,7 +44,7 @@ func _ready():
 	generate_collectible_component(levelOneComponents);
 	
 	var testResc = CollResource.instance()
-	testResc.init("fuel", Vector2(100, 100))
+	testResc.init("fuel", Vector2(150, 100))
 	self.add_child(testResc)
 
 
