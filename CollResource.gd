@@ -4,12 +4,10 @@ extends Node2D
 # var a = 2
 # var b = "text"
 var resourceType: String
-var pos: Vector2
 
 func init(type: String, curPos: Vector2):
 	resourceType = type
-	pos = curPos
-	self.global_position = pos
+	self.global_position = curPos
 	
 	match type:
 		"fuel":
@@ -24,7 +22,11 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var ship = get_parent().get_child(0)
-	if (ship.global_position - self.global_position).length() < 100:
+	var distance = (ship.global_position - self.global_position).length()
+	if distance < 100:
 		ship.add_resource(resourceType)
 		get_parent().remove_child(self)
 
+	#distance based cleanup
+	if (distance > 4000):
+		get_parent().remove_child(self)

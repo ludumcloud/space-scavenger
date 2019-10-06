@@ -21,16 +21,15 @@ func setActive(newActive):
 		$AnimatedSprite.frame = 0
 		
 func setTracking():
-	print("Set tracking")
-	$AnimatedSprite.playing = true
+	$AnimatedSprite.play("default")
 	isTracking = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	elapsedTime += delta
-	if (elapsedTime >= 10):
+	if (elapsedTime >= 10 && !isActive):
 		setActive(true)
-	if elapsedTime >= 30:
+	if elapsedTime >= 30 && !isTracking:
 		setTracking()
 		
 	if isTracking:
@@ -38,8 +37,13 @@ func _process(delta):
 		updateVec = updateVec.normalized() * 3
 		self.translate(updateVec)
 
+	var ship = get_parent().get_child(0)
+	var distance = (ship.global_position - self.global_position).length()
 	if (isActive):
-		var ship = get_parent().get_child(0)
-		if (ship.global_position - self.global_position).length() < 100:
+		if distance < 100:
 			ship.reinit()
 			get_parent().remove_child(self)
+
+	#distance based cleanup
+	if (distance > 4000):
+		get_parent().remove_child(self)

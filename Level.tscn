@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Level.gd" type="Script" id=1]
-[ext_resource path="res://AttachmentPopup.tscn" type="PackedScene" id=2]
+[ext_resource path="res://GUI.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/nebula.jpg" type="Texture" id=3]
 [ext_resource path="res://Ship.tscn" type="PackedScene" id=4]
-[ext_resource path="res://GUI.tscn" type="PackedScene" id=5]
+[ext_resource path="res://AttachmentPopup.tscn" type="PackedScene" id=5]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
@@ -32,13 +32,13 @@ texture = ExtResource( 3 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="GUI" parent="CanvasLayer" instance=ExtResource( 5 )]
+[node name="GUI" parent="CanvasLayer" instance=ExtResource( 2 )]
 margin_left = 4.00928
 margin_top = 4.8373
 margin_right = 316.009
 margin_bottom = 193.837
 
-[node name="AttachmentPopup" parent="CanvasLayer" instance=ExtResource( 2 )]
+[node name="AttachmentPopup" parent="CanvasLayer" instance=ExtResource( 5 )]
 margin_left = 190.452
 margin_top = 114.271
 margin_right = 782.452
