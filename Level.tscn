@@ -3,8 +3,8 @@
 [ext_resource path="res://Level.gd" type="Script" id=1]
 [ext_resource path="res://Ship.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/nebula2.jpg" type="Texture" id=3]
-[ext_resource path="res://AttachmentPopup.tscn" type="PackedScene" id=4]
-[ext_resource path="res://GUI.tscn" type="PackedScene" id=5]
+[ext_resource path="res://GUI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://AttachmentPopup.tscn" type="PackedScene" id=5]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
