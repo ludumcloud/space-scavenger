@@ -101,8 +101,9 @@ func _process(delta):
 	$Ship.rotation = $Ship.angle
 	$Ship.translate($Ship.shipVelocity)
 	
-	if (rng.randi_range(0, 300) > 299):
-		spawn_object()
+	if (rng.randi_range(0, 300) > 298):
+		if $Ship.shipVelocity.length() > 0:
+			spawn_object()
 
 	calc_current_zoom()
 
@@ -110,9 +111,12 @@ func spawn_object():
 	print('Spawning object')
 	var randAngle = $Ship.angle + rng.randf_range(-0.3, 0.3)
 	var spawn_point = $Ship.position + 100 * $Ship.shipVelocity + 800 * Vector2(sin(randAngle), -cos(randAngle))
-	print(spawn_point)
+
+	var upperRange = 1000 + accTime * 5
+	if upperRange > 2000:
+		upperRange = 2000
 	
-	var spawnVal = rng.randi_range(0, 1000)
+	var spawnVal = rng.randi_range(0, upperRange)
 	
 	var component
 	if spawnVal <= 100:
