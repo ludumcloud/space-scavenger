@@ -21,9 +21,16 @@ var engineNum = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	ship = $Cockpit
+	reinit()
 
 func reinit():
-	print('BOOOOOOOOOOOOOOOOOOOOM!!!!!!!!!!!!!');
+	ship.clear_joints()
+	angularVelocity = 1.5
+	shipVelocity = Vector2(0.0, 0.0)
+	maxShipSpeed = 5.0
+	fuel = 20
+	hullNum = 0;
+	engineNum = 0
 
 func can_attach(compType: String):
 	var joint = ship.search_joints(compType)

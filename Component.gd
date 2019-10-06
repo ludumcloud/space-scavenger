@@ -19,6 +19,11 @@ class ComponentJoint:
 		joint.add_child(comp)
 		component = comp
 
+	func detach():
+		if component != null:
+			joint.remove_child(component)
+			component = null
+
 var joints = []
 
 func get_joints():
@@ -42,3 +47,7 @@ func search_joints(compType: String):
 			break
 
 	return attach_joint
+
+func clear_joints():
+	for joint in joints:
+		joint.detach()
