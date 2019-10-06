@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Component.gd" type="Script" id=1]
+[ext_resource path="res://WingBL.gd" type="Script" id=1]
 [ext_resource path="res://assets/ssck/Orange (18).png" type="Texture" id=2]
 
 [node name="WingBL" type="Node2D"]
