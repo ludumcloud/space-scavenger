@@ -74,7 +74,8 @@ func add_resource(resourceType: String):
 	match resourceType:
 		"fuel":
 			fuel += 20
-
+			if fuel > fuelMax:
+				fuel = fuelMax
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

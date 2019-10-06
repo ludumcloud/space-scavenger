@@ -50,3 +50,11 @@ margin_right = 297.0
 margin_bottom = 31.0
 custom_fonts/font = SubResource( 1 )
 text = "Fuel"
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+margin_left = 100.0
+margin_top = 40.0
+margin_right = 145.0
+margin_bottom = 60.0
+disabled = true
+text = "Warp"
