@@ -82,6 +82,8 @@ func _process(delta):
 		maxShipSpeed = 4.0
 	else:
 		maxShipSpeed = 6.0 + (engineNum * 3)
+	
+	maxShipSpeed -= hullNum * 1.0
 
 	if shipVelocity.length() > 0 && fuel > 0:
 		fuel -= engineNum  * delta
