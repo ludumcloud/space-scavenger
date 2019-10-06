@@ -17,6 +17,9 @@ var hullNum = 0;
 func _ready():
 	ship = $Cockpit
 
+func reinit():
+	print('BOOOOOOOOOOOOOOOOOOOOM!!!!!!!!!!!!!');
+
 func can_attach(compType: String):
 	var joint = ship.search_joints(compType)
 	return joint != null
