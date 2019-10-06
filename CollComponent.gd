@@ -99,6 +99,8 @@ func _process(delta):
 			# var attachPopup = get_parent().get_node('CanvasLayer/AttachmentPopup')
 			# attachPopup.set_text(componentType, 10, 5, 80, 100)
 			# attachPopup.popup()
+			
+			get_parent().get_child(2).get_child(2).found_component(self)
 			ship.do_attach(componentType, componentClass.instance())
 			get_parent().remove_child(self)
 

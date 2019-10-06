@@ -24,6 +24,7 @@ func _process(delta):
 	var ship = get_parent().get_child(0)
 	var distance = (ship.global_position - self.global_position).length()
 	if distance < 100:
+		get_parent().get_child(2).get_child(2).found_fuel()
 		ship.add_resource(resourceType)
 		get_parent().remove_child(self)
 
