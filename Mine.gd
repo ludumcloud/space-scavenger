@@ -47,7 +47,10 @@ func _process(delta):
 			
 			#get_parent().get_child(2).get_child(2).found_mine()
 			ship.reinit()
-			$AnimatedSprite.play("explode")
+			if $AnimatedSprite.animation != "explode":
+				# Go into the exploding playback for audio/anim
+				$AudioStreamPlayer2D.play(0.0)
+				$AnimatedSprite.play("explode")
 
 	#distance based cleanup
 	if (distance > 4000):
