@@ -42,6 +42,7 @@ func can_attach(compType: String):
 # pretty much the same as above, but with actions
 func do_attach(compType: String, node):
 	var joint = ship.search_joints(compType)
+	$AudioStreamPlayer2D.play(0.0)
 	if joint == null:
 		return
 
@@ -73,7 +74,7 @@ func do_attach(compType: String, node):
 func add_resource(resourceType: String):
 	match resourceType:
 		"fuel":
-			fuel += 80
+			fuel += 50
 			if fuel > fuelMax:
 				fuel = fuelMax
 
