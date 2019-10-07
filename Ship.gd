@@ -65,7 +65,7 @@ func do_attach(compType: String, node):
 		'hull-left':
 			print('added hull left')
 			fuelMax += 50
-		'hull-rigth':
+		'hull-right':
 			print('added hull right')
 			fuelMax += 50
 	joint.attach(node)
@@ -73,7 +73,7 @@ func do_attach(compType: String, node):
 func add_resource(resourceType: String):
 	match resourceType:
 		"fuel":
-			fuel += 50
+			fuel += 80
 			if fuel > fuelMax:
 				fuel = fuelMax
 
