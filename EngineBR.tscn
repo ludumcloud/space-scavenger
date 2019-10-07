@@ -15,3 +15,12 @@ position = Vector2( 81, -23 )
 
 [node name="EngineRJoint" type="Node2D" parent="."]
 position = Vector2( 84, 25 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2( 40, 70 )
+z_index = -2
+amount = 24
+emission_shape = 1
+emission_sphere_radius = 25.0
+scale_amount = 4.0
+color = Color( 0, 1, 1, 1 )
