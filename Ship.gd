@@ -50,16 +50,20 @@ func do_attach(compType: String, node):
 	match compType:
 		'wing-left':
 			print('added wing left')
-			angularVelocity += 0.4
+			angularVelocity += 0.6
+			hullNum -= 1
 		'wing-right':
 			print('added wing right')
-			angularVelocity += 0.4
+			angularVelocity += 0.6
+			hullNum -= 1
 		'engine-left':
 			print('added engine left')
 			engineNum += 1
+			angularVelocity -= 0.3
 		'engine-right':
 			print('added engine right')
 			engineNum += 1
+			angularVelocity -= 0.3
 		'hull':
 			print('added hull')
 			fuelMax += 100
