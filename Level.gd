@@ -12,6 +12,7 @@ var zoomTransitionTarget = 0
 var currentZoomFactor = 0
 
 var accTime = 0.0
+var numMinesSpawned = 0
 
 var levelOneComponents = [
 	"doepfer-wing-left",
@@ -70,6 +71,7 @@ func _ready():
 
 func reset_time():
 	accTime = 0
+	numMinesSpawned = 0
 
 func calc_current_zoom():
 	#
@@ -150,7 +152,10 @@ func spawn_object():
 	elif spawnVal > 1000:
 		component = Mine.instance()
 		component.init(spawn_point, accTime)
-
+		numMinesSpawned += 1
 
 	self.add_child(component)
 
+func show_highscores():
+	$CanvasLayer/AttachmentPopup.set_text(numMinesSpawned)
+	$CanvasLayer/AttachmentPopup.popup_centered()

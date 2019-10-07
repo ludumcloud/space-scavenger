@@ -1,23 +1,10 @@
 extends Popup
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-func on_attach(): 
-	pass
-	
-func on_scrap():
-	pass
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
-	
-	
-	#pass # Replace with function body.
 
-func set_text(compType, attachAmt, scrapAmt, currentMetal, maxMetal):
+func set_text(highscore):
 	var l1 = $ColorRect/line1
 	var l2 = $ColorRect/line2
 	var l3 = $ColorRect/line3
@@ -26,30 +13,17 @@ func set_text(compType, attachAmt, scrapAmt, currentMetal, maxMetal):
 	l3.clear()
 	
 	l1.push_color(Color(255, 255, 255)) # white
-	l1.add_text("Attaching ")
-	l1.push_color(Color(255,155,0))
-	l1.add_text(compType)
-	l1.push_color(Color(255,255,255))
-	l1.add_text(" will cost ")
-	l1.push_color(Color(255,0,0))
-	l1.add_text(str(attachAmt))
-	l1.push_color(" metal")
+	l1.add_text("Congratulations!")
 	
-	l2.push_color(Color(255, 255, 255))
-	l2.add_text("Scrap for ")
-	l2.push_color(Color(0, 255, 0))
-	l2.add_text(str(scrapAmt))
-	l2.push_color(Color(255, 255, 255))
-	l2.add_text(" metal")
+	l2.push_color(Color(200, 200, 200))
+	l2.add_text("You escaped!")
 	
+	l3.push_color(Color(200, 200, 200))
+	l3.add_text("You had ")
+	l3.push_color(Color(0, 255, 0))
+	l3.add_text(str(highscore))
 	l3.push_color(Color(255, 255, 255))
-	l3.add_text("You have ")
-	l3.push_color(Color(0, 0, 255))
-	l3.add_text(str(currentMetal))
-	l3.add_text("/")
-	l3.add_text(str(maxMetal))
-	l3.push_color(Color(255, 255, 255))
-	l3.add_text(" metal ")
+	l3.add_text(" mines chasing you")
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

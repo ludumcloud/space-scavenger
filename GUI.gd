@@ -1,10 +1,6 @@
 extends MarginContainer
 
-var metalCapacityBar
-var metalBar
-var fuelBar
 var ship
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,8 +9,9 @@ func _ready():
 
 func handle_warp_button():
 	print("YOU WARPED")
+	get_parent().get_parent().show_highscores();
 
 func _process(delta):
 	$VBoxContainer/HBoxContainer/FuelCapacity/Fuel.value = ship.fuel
 	$VBoxContainer/HBoxContainer/FuelCapacity.value = ship.fuelMax
-	$VBoxContainer/Button.disabled = (ship.fuel < 200)
+	$VBoxContainer/Button.disabled = (ship.fuel < 199)

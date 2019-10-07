@@ -3,7 +3,6 @@
 [ext_resource path="res://AttachmentPopup.gd" type="Script" id=1]
 
 [node name="AttachmentPopup" type="Popup"]
-visible = true
 margin_right = 598.0
 margin_bottom = 337.0
 script = ExtResource( 1 )
@@ -13,27 +12,13 @@ margin_right = 597.0
 margin_bottom = 337.0
 color = Color( 0.14902, 0.141176, 0.141176, 1 )
 
-[node name="ScrapButton" type="Button" parent="ColorRect"]
-margin_left = 326.0
-margin_top = 223.0
-margin_right = 462.0
-margin_bottom = 283.0
-text = "Scrap"
-
-[node name="AttachButton" type="Button" parent="ColorRect"]
-margin_left = 119.0
-margin_top = 223.0
-margin_right = 264.0
-margin_bottom = 282.0
-text = "Attach"
-
 [node name="line1" type="RichTextLabel" parent="ColorRect"]
 margin_left = 201.466
 margin_top = 59.6626
 margin_right = 572.466
 margin_bottom = 94.6626
 custom_colors/default_color = Color( 0, 0, 0, 1 )
-text = "Attaching x will cost y metal"
+text = "Congratulations!"
 
 [node name="line2" type="RichTextLabel" parent="ColorRect"]
 margin_left = 229.842
@@ -41,7 +26,7 @@ margin_top = 83.1037
 margin_right = 600.842
 margin_bottom = 118.104
 custom_colors/default_color = Color( 0, 0, 0, 1 )
-text = "Scrap for z metal"
+text = "You escaped!"
 
 [node name="line3" type="RichTextLabel" parent="ColorRect"]
 margin_left = 211.336
@@ -49,4 +34,4 @@ margin_top = 105.311
 margin_right = 582.336
 margin_bottom = 140.311
 custom_colors/default_color = Color( 0, 0, 0, 1 )
-text = "You will have i/j metal"
+text = "You had x mines chasing you"
