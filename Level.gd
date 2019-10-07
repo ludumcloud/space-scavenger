@@ -27,7 +27,7 @@ var levelOneComponents = [
 ]
 
 var collectibles = [
-	{ "type": "fuel", "weight": 12 },
+	{ "type": "fuel", "weight": 20 },
 	{ "type": "doepfer-hull-left", "weight": 1 },
 	{ "type": "doepfer-hull-right", "weight": 1 },
 	{ "type": "bastl-hull-simple", "weight": 2 },
