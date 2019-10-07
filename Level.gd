@@ -27,14 +27,16 @@ var levelOneComponents = [
 ]
 
 var collectibles = [
-	{ "type": "fuel", "weight": 10 },
+	{ "type": "fuel", "weight": 12 },
 	{ "type": "doepfer-hull-left", "weight": 1 },
 	{ "type": "doepfer-hull-right", "weight": 1 },
 	{ "type": "bastl-hull-simple", "weight": 2 },
 	{ "type": "doepfer-wing-left", "weight": 1},
 	{ "type": "doepfer-wing-right", "weight": 1 },
 	{ "type": "mutable-engine-left", "weight": 2 },
-	{ "type": "mutable-engine-right", "weight": 2 }
+	{ "type": "mutable-engine-right", "weight": 2 },
+	{ "type": "basimilus-engine-left", "weight": 2 },
+	{ "type": "basimilus-engine-right", "weight": 2}
 ]
 
 var stuffBag = []
