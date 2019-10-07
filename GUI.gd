@@ -14,4 +14,4 @@ func handle_warp_button():
 func _process(delta):
 	$VBoxContainer/HBoxContainer/FuelCapacity/Fuel.value = ship.fuel
 	$VBoxContainer/HBoxContainer/FuelCapacity.value = ship.fuelMax
-	$VBoxContainer/Button.disabled = (ship.fuel < 199)
+	$VBoxContainer/Button.disabled = (ship.fuel < 185)
