@@ -12,6 +12,8 @@ texture = ExtResource( 2 )
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 position = Vector2( 45.3333, 97.3333 )
+amount = 16
 emission_shape = 1
 emission_sphere_radius = 10.0
 scale_amount = 4.0
+color = Color( 0, 1, 1, 1 )
