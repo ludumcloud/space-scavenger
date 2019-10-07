@@ -3,11 +3,13 @@ extends Node2D
 var elapsedTime = 0
 var isActive = false
 var isTracking = false
+var rotation_speed: float
 
 func init(position: Vector2, currGameTime):
 	self.global_position = position
 	elapsedTime = currGameTime
 	setActive(isActive)
+	rotation_speed = rand_range(-1, 1)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,7 +21,7 @@ func setActive(newActive):
 		$AnimatedSprite.frame = 1
 	else:
 		$AnimatedSprite.frame = 0
-		
+
 func setTracking():
 	$AnimatedSprite.play("default")
 	isTracking = true
@@ -31,11 +33,12 @@ func _process(delta):
 		setActive(true)
 	if elapsedTime >= 30 && !isTracking:
 		setTracking()
-		
+
 	if isTracking:
 		var updateVec = get_parent().get_child(0).position - self.global_position
 		updateVec = updateVec.normalized() * delta * 200
 		self.translate(updateVec)
+		self.rotate(rotation_speed * delta)
 
 	var ship = get_parent().get_child(0)
 	var distance = (ship.global_position - self.global_position).length()

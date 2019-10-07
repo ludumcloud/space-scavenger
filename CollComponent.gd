@@ -6,6 +6,10 @@ var componentClass
 var pos: Vector2
 var velocity: float
 
+var rotation_speed: float
+
+var direction: Vector2
+
 var componentLibrary = {
 	"doepfer-hull-left": {
 		"type": "hull-left",
@@ -81,7 +85,11 @@ func init(componentKey: String, curPos: Vector2):
 	componentName = descriptor['name']
 	componentClass = descriptor['klass']
 	$Sprite.texture = load(descriptor['texture'])
-	
+
+	rotation_speed = rand_range(-1, 1)
+
+	direction = Vector2(rand_range(-1, 1), rand_range(-1, 1))
+
 	self.global_position = curPos
 	self.scale = Vector2(0.7, 0.7)
 
@@ -92,11 +100,10 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var ship = get_parent().get_child(0)
+
 	var distance = (ship.global_position - self.global_position).length()
 	if (distance) < 80:
 		if(ship.can_attach(componentType)):
-			print("Can attach")
-			# var attachPopup = get_parent().get_node('CanvasLayer/AttachmentPopup')
 			# attachPopup.set_text(componentType, 10, 5, 80, 100)
 			# attachPopup.popup()
 			
@@ -107,4 +114,10 @@ func _process(delta):
 	#distance based cleanup
 	if (distance > 4000):
 		get_parent().remove_child(self)
+
+	var updateVec = self.global_position * direction
+	updateVec = updateVec.normalized() * delta * 25
+	self.translate(updateVec)
+
+	self.rotate(rotation_speed * delta)
 
