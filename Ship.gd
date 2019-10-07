@@ -13,7 +13,7 @@ var angle = 0 * PI
 var shipVelocity = Vector2(0.0, 0.0)
 var maxShipSpeed = 4.0
 var fuel = 0
-var fuelMax = 100
+var fuelMax = 50
 
 var hullNum = 0
 var engineNum = 0
@@ -30,7 +30,7 @@ func reinit():
 	shipVelocity = Vector2(0.0, 0.0)
 	maxShipSpeed = 4.0
 	fuel = 0
-	fuelMax = 100
+	fuelMax = 50
 	hullNum = 0
 	engineNum = 0
 	get_parent().reset_time()
@@ -73,18 +73,23 @@ func do_attach(compType: String, node):
 func add_resource(resourceType: String):
 	match resourceType:
 		"fuel":
-			fuel += 20
+			fuel += 50
 			if fuel > fuelMax:
 				fuel = fuelMax
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if fuel < 0:
+	if fuel <= 0:
 		maxShipSpeed = 4.0
 	else:
 		maxShipSpeed = 6.0 + (engineNum * 3)
 	
 	maxShipSpeed -= hullNum * 1.0
+	
+	if maxShipSpeed < 2.0:
+		maxShipSpeed = 2.0
 
 	if shipVelocity.length() > 0 && fuel > 0:
 		fuel -= engineNum  * delta
+		if fuel < 0:
+			fuel = 0
