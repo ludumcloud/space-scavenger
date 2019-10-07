@@ -74,7 +74,7 @@ func do_attach(compType: String, node):
 func add_resource(resourceType: String):
 	match resourceType:
 		"fuel":
-			fuel += 25
+			fuel += 30
 			if fuel > fuelMax:
 				fuel = fuelMax
 
