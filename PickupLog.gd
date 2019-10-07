@@ -40,12 +40,11 @@ func found_mine():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	for index in range(messages.size()):
-		var message = messages[index]
+	for message in messages:
 		message.timeLeft -= delta
 		if message.timeLeft <= 0:
 			self.remove_child(message.node)
-			messages.remove(index)
+			messages.erase(message)
 		else:
 			var newColor = Color(message.color.r, message.color.g, message.color.b, message.timeLeft/4)
 			message.node.add_color_override("font_color",  newColor)
