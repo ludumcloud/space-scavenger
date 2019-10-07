@@ -14,6 +14,8 @@ var currentZoomFactor = 0
 var accTime = 0.0
 var numMinesSpawned = 0
 
+var splashDone = false
+
 var levelOneComponents = [
 	"doepfer-wing-left",
 	"doepfer-wing-right",
@@ -48,8 +50,12 @@ func generate_collectible_component(set):
 	component.init(compType, initialPos)
 	self.add_child(component)
 
+func _on_popup_hide():
+	get_tree().paused = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$IntroScreen.connect("popup_hide", self, "_on_popup_hide")
 	gen_bag()
 	rng.randomize()
 	var testComp = CollComponent.instance()
@@ -106,6 +112,11 @@ func calc_current_zoom():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if not splashDone:
+		splashDone = true
+		$IntroScreen.popup_centered_ratio(0.5)
+		get_tree().paused = true
+		
 	accTime += delta
 	if stuffBag.size() == 0:
 		gen_bag()
